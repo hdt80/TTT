@@ -1,4 +1,3 @@
-# TTT
-Tabletop token tracker
+#Tabletop token tracker
 
-ESP
+Embedded senior project
