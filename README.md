@@ -1,3 +1,3 @@
-#Tabletop token tracker
+# Tabletop token tracker
 
 Embedded senior project
