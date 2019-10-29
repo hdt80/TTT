@@ -51,7 +51,7 @@ What type of data will this command be performed on?
 
 Type selection | Description | Read/Write | Addressed? | Notes
 ----- | ----- | ----- | ----- | -----
-000 | Handshake | R | No | Sent out to find the device
+000 | Handshake | W | No | Sent out to find the device
 001 | Grid contents | R | No | Read all 64 grid squares, left to right, top bottom
 010 | Color values | W | No | Only 8 color values available (0-7)
 011 | RGB LEDs | W | Yes | 4 MSBs are the row, 4 LSBs are the column
@@ -95,16 +95,16 @@ Note: The first bit of a response is always a 1, this is to tell if a received m
 
 What type of data is this response for?
 
-Type selection | Description
------ | -----
-000 | Handshake
-001 | Grid contents
-010 | Color values
-011 | RGB LEDs
-100 | Memory
-101 | Unused
-110 | Unused
-111 | Unused
+Type selection | Description | Contains
+----- | ----- | -----
+000 | Handshake | Communication version
+001 | Grid contents | 64 8 bytes of all the grid
+010 | Color values | (Write only)
+011 | RGB LEDs | (Write only)
+100 | Memory | Byte at the memory address
+101 | Unused |
+110 | Unused |
+111 | Unused |
 
 #### N - 2^N length
 
@@ -118,3 +118,35 @@ Value | Descrition
 ## Hardware logging entry
 
 An ASCII logging message to interact with the device. Since ASCII uses only 7 bits, the MSB of a logging entry will always be 0, allowing to distinguish between a response and entry.
+
+# Examples
+
+## Software commands
+
+### Handshake
+
+Sender | Message | Meaning
+----- | ----- | -----
+S | 0x8F | Handshake, are you a TTT device?
+D | 0x81 | Handshake, yes, I am using version 1 of the communication protocol
+
+### Reading grid contents
+
+Sender | Message | Meaning
+----- | ----- | -----
+S | 0x10 | Send me the grid contents
+D | 0x96 0x00 0x5F ... 0x00 | Grid contents
+
+### Setting RGB LED to a color
+
+Sender | Message | Meaning
+----- | ----- | -----
+S | 0xB9 0x13 0x02 | Set the RGB at column 2 row 4 to be color value 2 (purple)
+D | 0xB0 | RGB set
+
+### Setting a color value
+
+Sender | Message | Meaning
+----- | ----- | -----
+S | 0xA2 0xE2 | Set color value 2 to purple
+D | 0xA0 | I got your set color value command
