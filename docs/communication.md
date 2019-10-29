@@ -86,6 +86,7 @@ A response contains two parts, a header and possibly data
 ### Header
 
 Bit 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
+----- | - | - | - | - | - | - | -
 1     | T | T | T | N | N | N | N
 
 Note: The first bit of a response is always a 1, this is to tell if a received message is a response or a logging entry
