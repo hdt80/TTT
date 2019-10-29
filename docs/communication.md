@@ -21,11 +21,11 @@ Documentation on how the device and software talk to each other
 ### Software commands
 
 Bit 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
-------|---|---|---|---|---|---|---
-M		T	T	T	T	L	L	L
+----- | - | - | - | - | - | - | -
+M     |	T | T | T | T | L | L | L
 
 #### M
 Mode selection bit.|
---------|----
+------- | ---
 1 | Write
 0 | Read
