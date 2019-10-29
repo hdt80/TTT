@@ -114,3 +114,7 @@ Value | Descrition
 ----- | -----
 0000 | Used when a write is completed to confirm to software the operation is complete
 0001+ | The log 2 of how many data bytes are available. For example, sending 100, means 2^4 or 16 bytes of data will follow
+
+## Hardware logging entry
+
+An ASCII logging message to interact with the device. Since ASCII uses only 7 bits, the MSB of a logging entry will always be 0, allowing to distinguish between a response and entry.
