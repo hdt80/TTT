@@ -25,7 +25,8 @@ Bit 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
 M     |	T | T | T | T | L | L | L
 
 #### M
-Mode selection bit.|
-------- | ---
-1 | Write
+
+Mode selection bit | Description
+----- | -----
 0 | Read
+1 | Write
