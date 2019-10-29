@@ -1,6 +1,6 @@
 # Communication
 
-Documentation on how the device and software talk to each other
+Documentation on how the device and software talk to each other.
 
 ## Needs:
 - Handshake (S-\>H)
@@ -81,39 +81,41 @@ Responses are sent by the hardware after a command has been received.
 
 ### Format
 
-A response contains two parts, a header and possibly data
+A response contains single byte header, followed by at least 1 data byte
 
 ### Header
 
 Bit 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
 ----- | - | - | - | - | - | - | -
-1     | T | T | T | N | N | N | N
+1     | R | R | 0 | 0 | N | N | N
 
 Note: The first bit of a response is always a 1, this is to tell if a received message is a response or a logging entry
 
-#### T - Type response
+#### R - Command result
 
-What type of data is this response for?
+What was the status of the last command?
 
 Type selection | Description | Contains
 ----- | ----- | -----
-000 | Handshake | Communication version
-001 | Grid contents | 64 8 bytes of all the grid
-010 | Color values | (Write only)
-011 | RGB LEDs | (Write only)
-100 | Memory | Byte at the memory address
-101 | Unused |
-110 | Unused |
-111 | Unused |
+00 | Success | The command was successfully completed. The first data byte contains the command sent, followed by (2^N) - 1 more data bytes.
+01 | Warning | The command was accepted, but not completed. N will always be 1, with the first data byte containing the command, and the second containing a warning ID.
+10 | Error | The command was rejected. N will always be 1, with the first data byte containing the command, and the second containing an error ID
+11 | Unused | N will always be 0, with the first data byte containing the command sent
 
 #### N - 2^N length
 
-How many bytes of data there will be
+How many bytes of data there will be.
 
 Value | Descrition
 ----- | -----
-0000 | Used when a write is completed to confirm to software the operation is complete
-0001+ | The log 2 of how many data bytes are available. For example, sending 100, means 2^4 or 16 bytes of data will follow
+000 | 1 data byte follows this header
+001 | 2 data bytes follow this header
+010 | 4 data bytes follow this header
+011 | 8 data bytes follow this header
+100 | 16 data bytes follow this header
+101 | 32 data bytes follow this header
+110 | 64 data bytes follow this header
+111 | 128 data bytes follow this header
 
 ## Hardware logging entry
 
@@ -128,25 +130,25 @@ An ASCII logging message to interact with the device. Since ASCII uses only 7 bi
 Sender | Message | Meaning
 ----- | ----- | -----
 S | 0x8F | Handshake, are you a TTT device?
-D | 0x81 | Handshake, yes, I am using version 1 of the communication protocol
+D | 0x80 0x8F | Handshake, yes, I will accept commands from you now
 
 ### Reading grid contents
 
 Sender | Message | Meaning
 ----- | ----- | -----
 S | 0x10 | Send me the grid contents
-D | 0x96 0x00 0x5F ... 0x00 | Grid contents
+D | 0x85 0x10 0x5F ... 0x00 | Grid contents
 
 ### Setting RGB LED to a color
 
 Sender | Message | Meaning
 ----- | ----- | -----
 S | 0xB9 0x13 0x02 | Set the RGB at column 2 row 4 to be color value 2 (purple)
-D | 0xB0 | RGB set
+D | 0x80 0xB9 | RGB set
 
 ### Setting a color value
 
 Sender | Message | Meaning
 ----- | ----- | -----
 S | 0xA2 0xE2 | Set color value 2 to purple
-D | 0xA0 | I got your set color value command
+D | 0x80 0xA2 | I got your set color value command
