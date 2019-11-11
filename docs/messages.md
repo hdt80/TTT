@@ -1,4 +1,4 @@
-# Communication
+# Messaging
 
 Documentation on how the device and software talk to each other.
 
