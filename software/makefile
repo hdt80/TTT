@@ -25,7 +25,7 @@ CXX_FLAGS += $(CXX_WARNS) -c -g -fPIC
 
 # Compiling all the .cpp files into .o files
 $(OBJS): $(BUILDDIR)/%.o : $(SRCDIR)/%.c
-	$(CXX) $(CXX_FLAGS) -o "$@" "$<"
+	$(CXX) $(CXX_FLAGS) -o "$@" "$<" -DDEBUG
 
 # Building the library file
 .PHONY: build
@@ -34,7 +34,7 @@ build: $(OBJS)
 
 .PHONY: test
 test: build
-	gcc ./src/test_program.c $(CXX_WARNS) -l ttt -L bin -pthread -lm
+	gcc ./src/test_program.c $(CXX_WARNS) -l ttt -L bin -pthread -lm -DDEBUG
 
 .PHONY: clean
 clean:

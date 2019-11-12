@@ -2,15 +2,17 @@
 
 #include <avr/interrupt.h>
 
-#include "uart.h"
 #include "message_types.h"
+#include "uart.h"
+#include "led.h"
+#include "grid.h"
 
-/**
+/*
  * How many bytes from an incoming message have been received
  */
 unsigned char msg_length = 0;
 
-/**
+/*
  * Control bytes of a received message
  */
 unsigned char msg_readwrite = MSG_READWRITE_UNKNOWN;
@@ -22,8 +24,10 @@ int main(void) {
 	// Create FILE stream for logging messages and response messages
 	FILE uart_out = FDEV_SETUP_STREAM(uart_send, 0, _FDEV_SETUP_WRITE);
 
-	// Initalize the UART driver
+	// Initialize modules
 	uart_init();
+	led_init();
+	grid_init();
 
 	// Redirect stdout and stdin to our UART streams
 	stdout = &uart_out;
@@ -41,7 +45,7 @@ int main(void) {
 
 ISR(USART_RX_vect) {
 	unsigned char msg_byte = UDR0;
-	printf("0x%2x\r\n", msg_byte);
+	printf("0x%02x\r\n", msg_byte);
 
 	if (msg_length == 0) {
 		msg_readwrite = (msg_byte & MSG_READWRITE_MASK) >> MSG_READWRITE_OFFSET;
@@ -80,6 +84,11 @@ ISR(USART_RX_vect) {
 			default:
 				printf("Unknown message type: 0x%02x\r\n", msg_type);
 				msg_type = MSG_TYPE_UNKNOWN;
+
+				// Set error flag
+				fputc(0x80 | 0x40, stdout);
+				fputc(msg_byte, stdout);
+
 				break;
 		}
 	} else {

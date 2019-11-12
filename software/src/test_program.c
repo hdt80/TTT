@@ -11,15 +11,12 @@ int main(int argc, char** argv) {
 	u8 res = comm_init(filename);
 	if (res != 0) {
 		fprintf(stderr, "Failed to init to '%s'\n", filename);
-		return 1;
+		return -1;
 	}
 
-	sleep(2);
-
-	comm_handshake();
-
 	while (1) {
-
+		comm_handshake();
+		sleep(10);
 	}
 
 	return 0;

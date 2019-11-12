@@ -1,13 +1,23 @@
 #include "communication.h"
 
+#include "logger.h"
+
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <termios.h>
 
-#include <sys/inotify.h>
 #include <sys/types.h>
 
 #include <pthread.h>
+
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
 
 /*
  * Background thread that reads the file
@@ -15,75 +25,190 @@
 pthread_t comm_thread;
 
 /*
- * FILE used to communicate with the device
+ * File descriptor used to connect to the hardware device
  */
-FILE* comm_file = NULL;
+int comm_fd = -1;
 
 /*
  * Is |comm_thread| currently running?
+ *
  * 0: |comm_thread| is not running
  * !0: |comm_thread| is running
  */
 u8 comm_running = 0x00;
 
-u8 comm_init(const char* filename) {
-	if (comm_file != NULL) {
-		fprintf(stderr, "communication already start, use comm_close\n");
-		return 1;
+/*
+ * Status of the communication file
+ */
+u8 comm_status = STATUS_IDLE;
+
+/*
+ * Buffer of responses, FIFO
+ */
+comm_response comm_buffer[256] = {};
+
+/*
+ * How many responses are in |comm_buffer|
+ */
+u8 comm_buffer_length = 0;
+
+////////////////////////////////////////////////////////////////////////////////
+// Methods
+////////////////////////////////////////////////////////////////////////////////
+
+int comm_init(const char* filename) {
+	if (comm_fd != -1) {
+		errorf("Communication already started, use comm_close\n");
+		return -1;
 	}
 
-	printf("comm_init> Creating connection to: '%s'\n", filename);
+	debugf("comm_init> Creating connection to '%s'\n", filename);
 
-	comm_file = fopen(filename, "r+");
-
-	if (comm_file == NULL) {
-		fprintf(stderr, "Failed to open port '%s'\n", filename);
-		return 1;
+	comm_fd = open(filename, O_RDWR | O_NOCTTY | O_SYNC);
+	if (comm_fd < 0) {
+		errorf("Failed to open '%s': %s\n", filename, strerror(errno));
+		return -1;
 	}
-
-	// Set file to be unbufferd
-	setvbuf(comm_file, NULL, _IONBF, 0);
 
 	int res;
 
-	pthread_attr_t attr;
-	res = pthread_attr_init(&attr);
-	if (res != 0) {
-		fprintf(stderr, "Failed to init pthread attr: %i\n", res);
-		return 1;
+	res = isatty(comm_fd);
+	if (res == 0) {
+		warnf("comm_init> Port is not a tty: '%s'\n", filename);
+	} else if (res == 1) {
+		debugf("comm_init> Port is a tty: '%s'\n", filename);
+	} else {
+		debugf("Unknown result from isatty: %i", res);
 	}
 
+	struct termios tty;
+
+	res = tcgetattr(comm_fd, &tty);
+	if (res < 0) {
+		errorf("Failed to get tty attr: %s", strerror(errno));
+		return -1;
+	}
+
+	int speed = B9600; // 9600 baud
+
+	// Modified from: https://stackoverflow.com/questions/6947413
+	cfsetospeed(&tty, (speed_t) speed);
+    cfsetispeed(&tty, (speed_t) speed);
+
+    tty.c_cflag |= (CLOCAL | CREAD); // Ignore modem controls
+    tty.c_cflag &= ~CSIZE;
+    tty.c_cflag |= CS8;         // 8 bit words
+    tty.c_cflag &= ~PARENB;     // No parity
+    tty.c_cflag &= ~CSTOPB;     // One stop bit
+    tty.c_cflag &= ~CRTSCTS;    // No flow control
+
+	// Set input flags
+    tty.c_iflag &= ~(
+		IGNBRK		// Don't ignore BREAK on input
+		| BRKINT	// Don't ignore BREAK
+		| PARMRK	// Don't mark parity and framing errors
+		| ISTRIP	// Don't strip off 8th bit (keep it)
+		| INLCR		// Don't translate NL to CR on input
+		| IGNCR		// Don't ignore CR  on input
+		| ICRNL		// Don't translate CR to NL
+		| IXON		// Disable XON / XOFF flow control
+	);
+
+	// Set local flags
+    tty.c_lflag &= ~(
+		ECHO		// Don't echo back characters
+		| ECHONL	// Don't echo NL
+		| ICANON	// Disable canonical mode
+		| ISIG		// Don't generate signals
+		| IEXTEN	// Disable input processing
+	);
+
+	// Set output flags
+    tty.c_oflag &= ~OPOST; // Disable output processing
+
+	// Fetch bytes as they're available
+    tty.c_cc[VMIN] = 1;
+    tty.c_cc[VTIME] = 1;
+
+	// Set the tty attribs 
+	res = tcsetattr(comm_fd, TCSANOW, &tty);
+    if (res != 0) {
+		errorf("Failed to set tty attr: %s\n", strerror(errno));
+        return -1;
+    }
+
+	// Background thread setup
+	pthread_attr_t attr;
+
+	// Initalize the pthread attribs, used to set as detached
+	res = pthread_attr_init(&attr);
+	if (res < 0) {
+		errorf("Failed to init pthread attr: %s\n", strerror(res));
+		return -1;
+	}
+
+	// Set thread as detached
 	res = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-	if (res != 0) {
-		fprintf(stderr, "Failed to set thread to detact: %i\n", res);
-		return 1;
+	if (res < 0) {
+		errorf("Failed to set thread to detach: %s\n", strerror(res));
+		return -1;
 	}
 
 	comm_running = 1;
 
+	// Being running the background thread
 	res = pthread_create(&comm_thread, &attr, comm_task, (void*) filename);
 	if (res != 0) {
-		fprintf(stderr, "Failed to start thread: %i\n", res);
-		return 1;
+		errorf("Failed to start thread: %s\n", strerror(res));
+		return -1;
 	}
 
-	printf("comm_init> Connection initialized\n");
+	// Give it time to setup the connection
+	sleep(2);
+
+	debugf("comm_init> Connection initialized\n");
 
 	return 0;
 }
 
-u8 comm_handshake(void) {
-	if (comm_file == NULL) {
-		fprintf(stderr, "comminication file not opened, use comm_init\n");
-		return 1;
+u8 comm_busy(void) {
+	return comm_status != STATUS_IDLE;
+}
+
+comm_response comm_read(void) {
+	return comm_buffer[0];
+}
+
+int comm_handshake(void) {
+	if (comm_fd == -1) {
+		errorf("Cannot handshake, fd is not set\n");
+		return -1;
+	}
+	if (comm_busy() == 1) {
+		errorf("A command is currently being executed, cannot handshake\n");
+		return -1;
 	}
 
-	printf("comm_handshake> Sending handshake to device\n");
+	debugf("comm_handshake> Sending handshake to device\n");
 
-	int res = fputc(0x80, comm_file);
-	fflush(comm_file);
+	comm_status = STATUS_RUNNING;
 
-	printf("comm_handshake> res: %i\n", res);
+	const char msg[] = { 0x80 };
+	int res = write(comm_fd, msg, 1);
+
+	while(comm_busy() == 1);
+
+	comm_response data = comm_read();
+
+	if (data.command == 0x80) {
+		if (data.result == RESPONSE_RESULT_SUCCESS) {
+			infof("comm_handshake> Handshake success, ready for commands\n");
+		} else {
+			errorf("comm_handshake> Handshake failed\n");
+		}
+	} else {
+		warnf("Failed to get command back. Got: 0x%02x\n", data.command);
+	}
 
 	return 0;
 }
@@ -92,15 +217,30 @@ void* comm_task(void* filename) {
 	u8 status = 0x00;
 	u8 length = 0x00;
 	u8 index = 0x00;
-
 	u8* response = NULL;
 
-	printf("comm_task> Background task started\n");
+	u8* buf = malloc(1);
+	u8 res;
+
+	int s;
+
+	infof("comm_task> Background task started\n");
 
 	while (comm_running != 0) {
-		u8 res = fgetc(comm_file);
+		s = read(comm_fd, buf, 1);
+		if (s == 0) {
+			continue;
+		} else if (s < 0) {
+			errorf("Failed to read from comm: %s\n", strerror(errno));
+			continue;
+		}
 
+		res = *buf;
+
+		// Is this the start of a new response? Ensure the MSB is set
 		if (length == 0x00 && ((res & 0x80) == 0x80)) {
+			comm_status = STATUS_RUNNING;
+
 			status = (res & RESPONSE_STATUS_MASK) >> RESPONSE_STATUS_OFFSET;
 			length = (res & RESPONSE_LENGTH_MASK) >> RESPONSE_LENGTH_OFFSET;
 			length = pow(2, length);
@@ -109,33 +249,49 @@ void* comm_task(void* filename) {
 				free(response);
 			}
 
+			// +1 for the command byte
 			response = malloc(1 + length);
 
-			printf("comm_task> Response started\n");
-			printf("\tstatus: 0x%02x\n", status);
-			printf("\tlength: 0x%02x\n", length);
-			printf("\t");
+			debugf("comm_task> Response started\n");
+			debugf("\tstatus: 0x%02x\n", status);
+			debugf("\tlength: 0x%02x\n", length);
+			debugf("\tdata: ");
 
 			index = 0x01;
 
 			response[0] = res;
 
 			printf("0x%02x ", res);
-		} else if (length > 0x00) {
+		} else if (length > 0x00) { // Currently processing a msg
 			response[index] = res;
 
-			//printf("0x%02x (%i/%i)\n", res, index, length);
+			//debugf("\t0x%02x (%i/%i)\n", res, index, length);
 			printf("0x%02x ", res);
 
 			if (index == length) {
-				printf("\nResponse done\n");
+				printf("\n");
+				debugf("Response done\n");
+
+				comm_response res = {
+					.result = status,
+					.command = response[0],
+					.length = length,
+					.data = NULL
+				};
+
+				comm_buffer[comm_buffer_length] = res;
+
+				//++comm_buffer_length;
+
 				index = 0x01;
 				status = 0x00;
 				length = 0x00;
+
+				comm_status = STATUS_IDLE;
 			} else {
 				++index;
 			}
-		} else {
+		} else { // This is a logging message
 			printf("%c", res);
 		}
 	}
@@ -144,9 +300,14 @@ void* comm_task(void* filename) {
 		free(response);
 	}
 
+	free(buf);
+
 	return NULL;
 }
 
 void comm_stop(void) {
+	close(comm_fd);
+	comm_fd = -1;
+
 	comm_running = 0;
 }
