@@ -81,13 +81,13 @@ Responses are sent by the hardware after a command has been received.
 
 ### Format
 
-A response contains single byte header, followed by at least 1 data byte
+A response contains single byte header, followed by the command byte, then optionally data bytes. The command byte is the command that generated this response, allowing the software to ensure this response it expects.
 
 ### Header
 
 Bit 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
 ----- | - | - | - | - | - | - | -
-1     | R | R | 0 | 0 | N | N | N
+1     | R | N | N | N | N | N | N
 
 Note: The first bit of a response is always a 1, this is to tell if a received message is a response or a logging entry
 
@@ -95,27 +95,19 @@ Note: The first bit of a response is always a 1, this is to tell if a received m
 
 What was the status of the last command?
 
-Type selection | Description | Contains
+Type selection | Description | Meaning 
 ----- | ----- | -----
-00 | Success | The command was successfully completed. The first data byte contains the command sent, followed by (2^N) - 1 more data bytes.
-01 | Warning | The command was accepted, but not completed. N will always be 1, with the first data byte containing the command, and the second containing a warning ID.
-10 | Error | The command was rejected. N will always be 1, with the first data byte containing the command, and the second containing an error ID
-11 | Unused | N will always be 0, with the first data byte containing the command sent
+0 | Success | The command was successfully completed.
+1 | Error | The command was not completed. 
 
-#### N - 2^N length
-
-How many bytes of data there will be.
+#### N - Data length
 
 Value | Descrition
 ----- | -----
-000 | 1 data byte follows this header
-001 | 2 data bytes follow this header
-010 | 4 data bytes follow this header
-011 | 8 data bytes follow this header
-100 | 16 data bytes follow this header
-101 | 32 data bytes follow this header
-110 | 64 data bytes follow this header
-111 | 128 data bytes follow this header
+000000 | No bytes follow this header. 
+000001 | 1 byte follows this header.
+... | ...
+111111 | 127 bytes follow the header.
 
 ## Hardware logging entry
 
