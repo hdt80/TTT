@@ -36,7 +36,35 @@ int main(void) {
 
 	printf("firmware\r\n");
 
+	u8 col = 0;
+	u8 row = 0;
+
+	led_set_brightness(10);
+
 	while (1) {
+		for (u8 a = 0; a < 255; ++a) {
+			for (u8 b = 0; b < 255; ++b) {
+				for (u8 c = 0; c < 5; ++c) {
+
+				}
+			}
+		}
+
+		led_clear();
+		led_on(row, col, 139, 0x00, 139);
+
+		if (row == 7) {
+			row = 0;
+			++col;
+		} else {
+			++row;
+		}
+
+		if (col == 8) {
+			col = 0;
+		}
+
+		led_update();
 		//printf("Hi\r\n");
 	}
 

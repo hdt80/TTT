@@ -1,4 +1,4 @@
-DEVICE_PORT=ttyUSB0
+DEVICE_PORT=ttyUSB1
 
 # Compiler
 GCC = avr-gcc
