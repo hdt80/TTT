@@ -1,23 +1,23 @@
-### Commands
+# Commands
 
 Commands and how their arguments are interpreted.
 
-#### Command list
+## Command list
 * Handshake
 * Read grid
 * Set LED
 * Set color value
 * Read memory
 
-#### Handshake
+## Handshake
 
 Sent to the hardware device to indicate to accept commands from this port. Will probably be reworked in the future to add feature detection.
 
-#### Read grid
+## Read grid
 
 Read command for all 64 RGB LEDs.
 
-#### Set LED
+## Set LED
 
 Different from all other commands. The address field is not used, and there is address and data bytes alternating.
 
@@ -34,7 +34,7 @@ R | Row | Indicates the row to set
 P | Previous color | Use the previous color from the previous address byte
 C | Column | Indicates the column to set
 
-##### Examples
+### Examples
 
 `0xB8 0x80 0x01 0x99 0xA2 0x02 0x7F`
 
