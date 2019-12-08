@@ -8,7 +8,9 @@ void led_init(void);
 
 void led_set_color(unsigned char index, unsigned char value);
 
-void led_on(u8 row, u8 col, u8 r, u8 g, u8 b);
+void led_on_value(u8 col, u8 row, u8 index);
+
+void led_on_rgb(u8 col, u8 row, u8 r, u8 g, u8 b);
 
 void led_off(u8 col, u8 row);
 

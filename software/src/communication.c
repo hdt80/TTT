@@ -193,18 +193,64 @@ int comm_handshake(void) {
 
 	comm_status = STATUS_RUNNING;
 
-	const char msg[] = { 0x80 };
+	const char msg[] = { 0x00 };
 	int res = write(comm_fd, msg, 1);
 
 	while(comm_busy() == 1);
 
 	comm_response data = comm_read();
 
-	if (data.command == 0x80) {
+	if (data.command == 0x00) {
 		if (data.result == RESPONSE_RESULT_SUCCESS) {
 			infof("comm_handshake> Handshake success, ready for commands\n");
 		} else {
 			errorf("comm_handshake> Handshake failed\n");
+		}
+	} else {
+		warnf("Failed to get command back. Got: 0x%02x\n", data.command);
+	}
+
+	return 0;
+}
+
+int comm_led_on(u8 col, u8 row, u8 color) {
+	if (comm_fd == -1) {
+		errorf("Cannot turn LED on, fd is not set\n");
+		return -1;
+	}
+	if (comm_busy() == 1) {
+		errorf("A command is currently being executed, cannot turn LED on\n");
+		return -1;
+	}
+
+	debugf("comm_led_on> Setting (%d, %d) to %d\n", col, row, color);
+
+	comm_status = STATUS_RUNNING;
+
+	const unsigned char msg[] = {
+		0xB9,
+		(
+			0x00
+			| ((col & 0x07) << 4)
+			| 0x00
+			| ((row & 0x07))
+		),
+		color & 0x07
+	};
+
+	debugf("\t0x%02x 0x%02x 0x%02x\n", msg[0], msg[1], msg[2]);
+
+	int res = write(comm_fd, msg, 3);
+
+	while(comm_busy() == 1);
+
+	comm_response data = comm_read();
+
+	if (data.command == 0xB9) {
+		if (data.result == RESPONSE_RESULT_SUCCESS) {
+			infof("comm_led_on> LED on successful\n");
+		} else {
+			errorf("comm_led_on> LED on failed\n");
 		}
 	} else {
 		warnf("Failed to get command back. Got: 0x%02x\n", data.command);
@@ -274,7 +320,7 @@ void* comm_task(void* filename) {
 
 				comm_response res = {
 					.result = status,
-					.command = response[0],
+					.command = response[1],
 					.length = length,
 					.data = NULL
 				};

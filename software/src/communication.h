@@ -64,6 +64,11 @@ int comm_init(const char* filename);
  */
 u8 comm_available(void);
 
+/*
+ * Read the next response available from the respone queue
+ *
+ * returns: The next available response.
+ */
 comm_response comm_read(void);
 
 /*
@@ -77,6 +82,17 @@ void comm_close();
  * returns: 0 on success, -1 on error (printed to stderr)
  */
 int comm_handshake();
+
+/*
+ * Turn an LED on
+ *
+ * @col: Column the LED is in
+ * @row: Row the LED is in
+ * @color: Color index to set
+ *
+ * returns: 0 on success, -1 on error (printed to stderr)
+ */
+int comm_led_on(u8 col, u8 row, u8 color);
 
 /*
  * Method to run in a detached thread

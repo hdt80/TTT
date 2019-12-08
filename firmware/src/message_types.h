@@ -11,10 +11,10 @@
 #define MSG_TYPE_MASK 0x70
 #define MSG_TYPE_OFFSET 0x4
 #define MSG_TYPE_HANDSHAKE 0x00
-#define MSG_TYPE_GRID 0x10
-#define MSG_TYPE_COLOR 0x20
-#define MSG_TYPE_RGB 0x30
-#define MSG_TYPE_MEMORY 0x40
+#define MSG_TYPE_GRID 0x01
+#define MSG_TYPE_COLOR 0x02
+#define MSG_TYPE_RGB 0x03
+#define MSG_TYPE_MEMORY 0x04
 #define MSG_TYPE_UNKNOWN 0xFF
 
 // Mask to get the mode bit of a header

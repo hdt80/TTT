@@ -42,7 +42,17 @@ void led_set_color(unsigned char index, unsigned char value) {
 	led_colors[index] = value;
 }
 
-void led_on(u8 col, u8 row, u8 r, u8 g, u8 b) {
+void led_on_value(u8 col, u8 row, u8 index) {
+	u8 color = led_colors[index];
+
+	u8 r = (color & 0xE0);
+	u8 g = (color & 0x1C) << 3;
+	u8 b = (color & 0x03) << 6;
+
+	led_on_rgb(col, row, r, g, b);
+}
+
+void led_on_rgb(u8 col, u8 row, u8 r, u8 g, u8 b) {
 	u8* colors = &led_data[(col * 8 + row) * 3];
 
 	if (led_brightness > 0) {
