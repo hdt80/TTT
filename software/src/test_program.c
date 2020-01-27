@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 	unsigned char color = 0;
 
 	while (1) {
-		comm_led_on(col, row, color);
+		comm_led_on(row, col, color);
 
 		if (row == 7) {
 			row = 0;

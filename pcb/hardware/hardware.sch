@@ -1,0 +1,2349 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L hardware-rescue:ArduinoNano_r3.3-MCU_Module U1
+U 1 1 5E1BF9A4
+P 1500 1500
+F 0 "U1" H 1500 2325 50  0000 C CNN
+F 1 "ArduinoNano_r3.3" H 1500 2234 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x16_P1.00mm_Vertical" H 1500 2200 50  0001 C CNN
+F 3 "" H 1500 2200 50  0001 C CNN
+	1    1500 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D00
+U 1 1 5E1C17C4
+P 6450 1200
+F 0 "D00" H 6794 1246 50  0000 L CNN
+F 1 "WS2812B" H 6794 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 6500 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6550 825 50  0001 L TNN
+	1    6450 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D5
+U 1 1 5E1C78AB
+P 7050 1200
+F 0 "D5" H 7394 1246 50  0000 L CNN
+F 1 "WS2812B" H 7394 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7100 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7150 825 50  0001 L TNN
+	1    7050 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D9
+U 1 1 5E1C8998
+P 7650 1200
+F 0 "D9" H 7994 1246 50  0000 L CNN
+F 1 "WS2812B" H 7994 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7700 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7750 825 50  0001 L TNN
+	1    7650 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D13
+U 1 1 5E1CCCE7
+P 8250 1200
+F 0 "D13" H 8594 1246 50  0000 L CNN
+F 1 "WS2812B" H 8594 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8300 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8350 825 50  0001 L TNN
+	1    8250 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D17
+U 1 1 5E1CCCED
+P 8850 1200
+F 0 "D17" H 9194 1246 50  0000 L CNN
+F 1 "WS2812B" H 9194 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8900 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8950 825 50  0001 L TNN
+	1    8850 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D21
+U 1 1 5E1CCCF3
+P 9450 1200
+F 0 "D21" H 9794 1246 50  0000 L CNN
+F 1 "WS2812B" H 9794 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 9500 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 9550 825 50  0001 L TNN
+	1    9450 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D25
+U 1 1 5E1D28E5
+P 10050 1200
+F 0 "D25" H 10394 1246 50  0000 L CNN
+F 1 "WS2812B" H 10394 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10100 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10150 825 50  0001 L TNN
+	1    10050 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D29
+U 1 1 5E1D28EB
+P 10650 1200
+F 0 "D29" H 10994 1246 50  0000 L CNN
+F 1 "WS2812B" H 10994 1155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10700 900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10750 825 50  0001 L TNN
+	1    10650 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR02
+U 1 1 5E1E5AC9
+P 6450 1500
+F 0 "#PWR02" H 6450 1250 50  0001 C CNN
+F 1 "GND" H 6455 1327 50  0000 C CNN
+F 2 "" H 6450 1500 50  0001 C CNN
+F 3 "" H 6450 1500 50  0001 C CNN
+	1    6450 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR010
+U 1 1 5E1E62A6
+P 7050 1500
+F 0 "#PWR010" H 7050 1250 50  0001 C CNN
+F 1 "GND" H 7055 1327 50  0000 C CNN
+F 2 "" H 7050 1500 50  0001 C CNN
+F 3 "" H 7050 1500 50  0001 C CNN
+	1    7050 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR018
+U 1 1 5E1EE7CD
+P 7650 1500
+F 0 "#PWR018" H 7650 1250 50  0001 C CNN
+F 1 "GND" H 7655 1327 50  0000 C CNN
+F 2 "" H 7650 1500 50  0001 C CNN
+F 3 "" H 7650 1500 50  0001 C CNN
+	1    7650 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR026
+U 1 1 5E1EEA61
+P 8250 1500
+F 0 "#PWR026" H 8250 1250 50  0001 C CNN
+F 1 "GND" H 8255 1327 50  0000 C CNN
+F 2 "" H 8250 1500 50  0001 C CNN
+F 3 "" H 8250 1500 50  0001 C CNN
+	1    8250 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR034
+U 1 1 5E1EEC22
+P 8850 1500
+F 0 "#PWR034" H 8850 1250 50  0001 C CNN
+F 1 "GND" H 8855 1327 50  0000 C CNN
+F 2 "" H 8850 1500 50  0001 C CNN
+F 3 "" H 8850 1500 50  0001 C CNN
+	1    8850 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR042
+U 1 1 5E1EED9F
+P 9450 1500
+F 0 "#PWR042" H 9450 1250 50  0001 C CNN
+F 1 "GND" H 9455 1327 50  0000 C CNN
+F 2 "" H 9450 1500 50  0001 C CNN
+F 3 "" H 9450 1500 50  0001 C CNN
+	1    9450 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR050
+U 1 1 5E1EEFED
+P 10050 1500
+F 0 "#PWR050" H 10050 1250 50  0001 C CNN
+F 1 "GND" H 10055 1327 50  0000 C CNN
+F 2 "" H 10050 1500 50  0001 C CNN
+F 3 "" H 10050 1500 50  0001 C CNN
+	1    10050 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR058
+U 1 1 5E1EF17C
+P 10650 1500
+F 0 "#PWR058" H 10650 1250 50  0001 C CNN
+F 1 "GND" H 10655 1327 50  0000 C CNN
+F 2 "" H 10650 1500 50  0001 C CNN
+F 3 "" H 10650 1500 50  0001 C CNN
+	1    10650 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR01
+U 1 1 5E1F2CEF
+P 6450 900
+F 0 "#PWR01" H 6450 750 50  0001 C CNN
+F 1 "+5V" H 6465 1073 50  0000 C CNN
+F 2 "" H 6450 900 50  0001 C CNN
+F 3 "" H 6450 900 50  0001 C CNN
+	1    6450 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR09
+U 1 1 5E1F4263
+P 7050 900
+F 0 "#PWR09" H 7050 750 50  0001 C CNN
+F 1 "+5V" H 7065 1073 50  0000 C CNN
+F 2 "" H 7050 900 50  0001 C CNN
+F 3 "" H 7050 900 50  0001 C CNN
+	1    7050 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR017
+U 1 1 5E1F454F
+P 7650 900
+F 0 "#PWR017" H 7650 750 50  0001 C CNN
+F 1 "+5V" H 7665 1073 50  0000 C CNN
+F 2 "" H 7650 900 50  0001 C CNN
+F 3 "" H 7650 900 50  0001 C CNN
+	1    7650 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR025
+U 1 1 5E1F4875
+P 8250 900
+F 0 "#PWR025" H 8250 750 50  0001 C CNN
+F 1 "+5V" H 8265 1073 50  0000 C CNN
+F 2 "" H 8250 900 50  0001 C CNN
+F 3 "" H 8250 900 50  0001 C CNN
+	1    8250 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR033
+U 1 1 5E1F4A50
+P 8850 900
+F 0 "#PWR033" H 8850 750 50  0001 C CNN
+F 1 "+5V" H 8865 1073 50  0000 C CNN
+F 2 "" H 8850 900 50  0001 C CNN
+F 3 "" H 8850 900 50  0001 C CNN
+	1    8850 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR041
+U 1 1 5E1F4C39
+P 9450 900
+F 0 "#PWR041" H 9450 750 50  0001 C CNN
+F 1 "+5V" H 9465 1073 50  0000 C CNN
+F 2 "" H 9450 900 50  0001 C CNN
+F 3 "" H 9450 900 50  0001 C CNN
+	1    9450 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR049
+U 1 1 5E1F4DCF
+P 10050 900
+F 0 "#PWR049" H 10050 750 50  0001 C CNN
+F 1 "+5V" H 10065 1073 50  0000 C CNN
+F 2 "" H 10050 900 50  0001 C CNN
+F 3 "" H 10050 900 50  0001 C CNN
+	1    10050 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR057
+U 1 1 5E1F5067
+P 10650 900
+F 0 "#PWR057" H 10650 750 50  0001 C CNN
+F 1 "+5V" H 10665 1073 50  0000 C CNN
+F 2 "" H 10650 900 50  0001 C CNN
+F 3 "" H 10650 900 50  0001 C CNN
+	1    10650 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D2
+U 1 1 5E21DEEF
+P 6450 2450
+F 0 "D2" H 6794 2496 50  0000 L CNN
+F 1 "WS2812B" H 6794 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 6500 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6550 2075 50  0001 L TNN
+	1    6450 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D6
+U 1 1 5E21DEF5
+P 7050 2450
+F 0 "D6" H 7394 2496 50  0000 L CNN
+F 1 "WS2812B" H 7394 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7100 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7150 2075 50  0001 L TNN
+	1    7050 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D10
+U 1 1 5E21DEFB
+P 7650 2450
+F 0 "D10" H 7994 2496 50  0000 L CNN
+F 1 "WS2812B" H 7994 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7700 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7750 2075 50  0001 L TNN
+	1    7650 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D14
+U 1 1 5E21DF01
+P 8250 2450
+F 0 "D14" H 8594 2496 50  0000 L CNN
+F 1 "WS2812B" H 8594 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8300 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8350 2075 50  0001 L TNN
+	1    8250 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D18
+U 1 1 5E21DF07
+P 8850 2450
+F 0 "D18" H 9194 2496 50  0000 L CNN
+F 1 "WS2812B" H 9194 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8900 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8950 2075 50  0001 L TNN
+	1    8850 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D22
+U 1 1 5E21DF0D
+P 9450 2450
+F 0 "D22" H 9794 2496 50  0000 L CNN
+F 1 "WS2812B" H 9794 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 9500 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 9550 2075 50  0001 L TNN
+	1    9450 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D26
+U 1 1 5E21DF13
+P 10050 2450
+F 0 "D26" H 10394 2496 50  0000 L CNN
+F 1 "WS2812B" H 10394 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10100 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10150 2075 50  0001 L TNN
+	1    10050 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D30
+U 1 1 5E21DF19
+P 10650 2450
+F 0 "D30" H 10994 2496 50  0000 L CNN
+F 1 "WS2812B" H 10994 2405 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10700 2150 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10750 2075 50  0001 L TNN
+	1    10650 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR04
+U 1 1 5E21DF1F
+P 6450 2750
+F 0 "#PWR04" H 6450 2500 50  0001 C CNN
+F 1 "GND" H 6455 2577 50  0000 C CNN
+F 2 "" H 6450 2750 50  0001 C CNN
+F 3 "" H 6450 2750 50  0001 C CNN
+	1    6450 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR012
+U 1 1 5E21DF25
+P 7050 2750
+F 0 "#PWR012" H 7050 2500 50  0001 C CNN
+F 1 "GND" H 7055 2577 50  0000 C CNN
+F 2 "" H 7050 2750 50  0001 C CNN
+F 3 "" H 7050 2750 50  0001 C CNN
+	1    7050 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR020
+U 1 1 5E21DF2B
+P 7650 2750
+F 0 "#PWR020" H 7650 2500 50  0001 C CNN
+F 1 "GND" H 7655 2577 50  0000 C CNN
+F 2 "" H 7650 2750 50  0001 C CNN
+F 3 "" H 7650 2750 50  0001 C CNN
+	1    7650 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR028
+U 1 1 5E21DF31
+P 8250 2750
+F 0 "#PWR028" H 8250 2500 50  0001 C CNN
+F 1 "GND" H 8255 2577 50  0000 C CNN
+F 2 "" H 8250 2750 50  0001 C CNN
+F 3 "" H 8250 2750 50  0001 C CNN
+	1    8250 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR036
+U 1 1 5E21DF37
+P 8850 2750
+F 0 "#PWR036" H 8850 2500 50  0001 C CNN
+F 1 "GND" H 8855 2577 50  0000 C CNN
+F 2 "" H 8850 2750 50  0001 C CNN
+F 3 "" H 8850 2750 50  0001 C CNN
+	1    8850 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR044
+U 1 1 5E21DF3D
+P 9450 2750
+F 0 "#PWR044" H 9450 2500 50  0001 C CNN
+F 1 "GND" H 9455 2577 50  0000 C CNN
+F 2 "" H 9450 2750 50  0001 C CNN
+F 3 "" H 9450 2750 50  0001 C CNN
+	1    9450 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR052
+U 1 1 5E21DF43
+P 10050 2750
+F 0 "#PWR052" H 10050 2500 50  0001 C CNN
+F 1 "GND" H 10055 2577 50  0000 C CNN
+F 2 "" H 10050 2750 50  0001 C CNN
+F 3 "" H 10050 2750 50  0001 C CNN
+	1    10050 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR060
+U 1 1 5E21DF49
+P 10650 2750
+F 0 "#PWR060" H 10650 2500 50  0001 C CNN
+F 1 "GND" H 10655 2577 50  0000 C CNN
+F 2 "" H 10650 2750 50  0001 C CNN
+F 3 "" H 10650 2750 50  0001 C CNN
+	1    10650 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR03
+U 1 1 5E21DF4F
+P 6450 2150
+F 0 "#PWR03" H 6450 2000 50  0001 C CNN
+F 1 "+5V" H 6465 2323 50  0000 C CNN
+F 2 "" H 6450 2150 50  0001 C CNN
+F 3 "" H 6450 2150 50  0001 C CNN
+	1    6450 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR011
+U 1 1 5E21DF55
+P 7050 2150
+F 0 "#PWR011" H 7050 2000 50  0001 C CNN
+F 1 "+5V" H 7065 2323 50  0000 C CNN
+F 2 "" H 7050 2150 50  0001 C CNN
+F 3 "" H 7050 2150 50  0001 C CNN
+	1    7050 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR019
+U 1 1 5E21DF5B
+P 7650 2150
+F 0 "#PWR019" H 7650 2000 50  0001 C CNN
+F 1 "+5V" H 7665 2323 50  0000 C CNN
+F 2 "" H 7650 2150 50  0001 C CNN
+F 3 "" H 7650 2150 50  0001 C CNN
+	1    7650 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR027
+U 1 1 5E21DF61
+P 8250 2150
+F 0 "#PWR027" H 8250 2000 50  0001 C CNN
+F 1 "+5V" H 8265 2323 50  0000 C CNN
+F 2 "" H 8250 2150 50  0001 C CNN
+F 3 "" H 8250 2150 50  0001 C CNN
+	1    8250 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR035
+U 1 1 5E21DF67
+P 8850 2150
+F 0 "#PWR035" H 8850 2000 50  0001 C CNN
+F 1 "+5V" H 8865 2323 50  0000 C CNN
+F 2 "" H 8850 2150 50  0001 C CNN
+F 3 "" H 8850 2150 50  0001 C CNN
+	1    8850 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR043
+U 1 1 5E21DF6D
+P 9450 2150
+F 0 "#PWR043" H 9450 2000 50  0001 C CNN
+F 1 "+5V" H 9465 2323 50  0000 C CNN
+F 2 "" H 9450 2150 50  0001 C CNN
+F 3 "" H 9450 2150 50  0001 C CNN
+	1    9450 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR051
+U 1 1 5E21DF73
+P 10050 2150
+F 0 "#PWR051" H 10050 2000 50  0001 C CNN
+F 1 "+5V" H 10065 2323 50  0000 C CNN
+F 2 "" H 10050 2150 50  0001 C CNN
+F 3 "" H 10050 2150 50  0001 C CNN
+	1    10050 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR059
+U 1 1 5E21DF79
+P 10650 2150
+F 0 "#PWR059" H 10650 2000 50  0001 C CNN
+F 1 "+5V" H 10665 2323 50  0000 C CNN
+F 2 "" H 10650 2150 50  0001 C CNN
+F 3 "" H 10650 2150 50  0001 C CNN
+	1    10650 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10950 1200 10950 1850
+Wire Wire Line
+	10950 1850 6150 1850
+Wire Wire Line
+	6150 1850 6150 2450
+$Comp
+L hardware-rescue:WS2812B-LED D3
+U 1 1 5E2548C5
+P 6450 3700
+F 0 "D3" H 6794 3746 50  0000 L CNN
+F 1 "WS2812B" H 6794 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 6500 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6550 3325 50  0001 L TNN
+	1    6450 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D7
+U 1 1 5E2548CB
+P 7050 3700
+F 0 "D7" H 7394 3746 50  0000 L CNN
+F 1 "WS2812B" H 7394 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7100 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7150 3325 50  0001 L TNN
+	1    7050 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D11
+U 1 1 5E2548D1
+P 7650 3700
+F 0 "D11" H 7994 3746 50  0000 L CNN
+F 1 "WS2812B" H 7994 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7700 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7750 3325 50  0001 L TNN
+	1    7650 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D15
+U 1 1 5E2548D7
+P 8250 3700
+F 0 "D15" H 8594 3746 50  0000 L CNN
+F 1 "WS2812B" H 8594 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8300 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8350 3325 50  0001 L TNN
+	1    8250 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D19
+U 1 1 5E2548DD
+P 8850 3700
+F 0 "D19" H 9194 3746 50  0000 L CNN
+F 1 "WS2812B" H 9194 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8900 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8950 3325 50  0001 L TNN
+	1    8850 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D23
+U 1 1 5E2548E3
+P 9450 3700
+F 0 "D23" H 9794 3746 50  0000 L CNN
+F 1 "WS2812B" H 9794 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 9500 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 9550 3325 50  0001 L TNN
+	1    9450 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D27
+U 1 1 5E2548E9
+P 10050 3700
+F 0 "D27" H 10394 3746 50  0000 L CNN
+F 1 "WS2812B" H 10394 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10100 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10150 3325 50  0001 L TNN
+	1    10050 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D31
+U 1 1 5E2548EF
+P 10650 3700
+F 0 "D31" H 10994 3746 50  0000 L CNN
+F 1 "WS2812B" H 10994 3655 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10700 3400 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10750 3325 50  0001 L TNN
+	1    10650 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR06
+U 1 1 5E2548F5
+P 6450 4000
+F 0 "#PWR06" H 6450 3750 50  0001 C CNN
+F 1 "GND" H 6455 3827 50  0000 C CNN
+F 2 "" H 6450 4000 50  0001 C CNN
+F 3 "" H 6450 4000 50  0001 C CNN
+	1    6450 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR014
+U 1 1 5E2548FB
+P 7050 4000
+F 0 "#PWR014" H 7050 3750 50  0001 C CNN
+F 1 "GND" H 7055 3827 50  0000 C CNN
+F 2 "" H 7050 4000 50  0001 C CNN
+F 3 "" H 7050 4000 50  0001 C CNN
+	1    7050 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR022
+U 1 1 5E254901
+P 7650 4000
+F 0 "#PWR022" H 7650 3750 50  0001 C CNN
+F 1 "GND" H 7655 3827 50  0000 C CNN
+F 2 "" H 7650 4000 50  0001 C CNN
+F 3 "" H 7650 4000 50  0001 C CNN
+	1    7650 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR030
+U 1 1 5E254907
+P 8250 4000
+F 0 "#PWR030" H 8250 3750 50  0001 C CNN
+F 1 "GND" H 8255 3827 50  0000 C CNN
+F 2 "" H 8250 4000 50  0001 C CNN
+F 3 "" H 8250 4000 50  0001 C CNN
+	1    8250 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR038
+U 1 1 5E25490D
+P 8850 4000
+F 0 "#PWR038" H 8850 3750 50  0001 C CNN
+F 1 "GND" H 8855 3827 50  0000 C CNN
+F 2 "" H 8850 4000 50  0001 C CNN
+F 3 "" H 8850 4000 50  0001 C CNN
+	1    8850 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR046
+U 1 1 5E254913
+P 9450 4000
+F 0 "#PWR046" H 9450 3750 50  0001 C CNN
+F 1 "GND" H 9455 3827 50  0000 C CNN
+F 2 "" H 9450 4000 50  0001 C CNN
+F 3 "" H 9450 4000 50  0001 C CNN
+	1    9450 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR054
+U 1 1 5E254919
+P 10050 4000
+F 0 "#PWR054" H 10050 3750 50  0001 C CNN
+F 1 "GND" H 10055 3827 50  0000 C CNN
+F 2 "" H 10050 4000 50  0001 C CNN
+F 3 "" H 10050 4000 50  0001 C CNN
+	1    10050 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR062
+U 1 1 5E25491F
+P 10650 4000
+F 0 "#PWR062" H 10650 3750 50  0001 C CNN
+F 1 "GND" H 10655 3827 50  0000 C CNN
+F 2 "" H 10650 4000 50  0001 C CNN
+F 3 "" H 10650 4000 50  0001 C CNN
+	1    10650 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR05
+U 1 1 5E254925
+P 6450 3400
+F 0 "#PWR05" H 6450 3250 50  0001 C CNN
+F 1 "+5V" H 6465 3573 50  0000 C CNN
+F 2 "" H 6450 3400 50  0001 C CNN
+F 3 "" H 6450 3400 50  0001 C CNN
+	1    6450 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR013
+U 1 1 5E25492B
+P 7050 3400
+F 0 "#PWR013" H 7050 3250 50  0001 C CNN
+F 1 "+5V" H 7065 3573 50  0000 C CNN
+F 2 "" H 7050 3400 50  0001 C CNN
+F 3 "" H 7050 3400 50  0001 C CNN
+	1    7050 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR021
+U 1 1 5E254931
+P 7650 3400
+F 0 "#PWR021" H 7650 3250 50  0001 C CNN
+F 1 "+5V" H 7665 3573 50  0000 C CNN
+F 2 "" H 7650 3400 50  0001 C CNN
+F 3 "" H 7650 3400 50  0001 C CNN
+	1    7650 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR029
+U 1 1 5E254937
+P 8250 3400
+F 0 "#PWR029" H 8250 3250 50  0001 C CNN
+F 1 "+5V" H 8265 3573 50  0000 C CNN
+F 2 "" H 8250 3400 50  0001 C CNN
+F 3 "" H 8250 3400 50  0001 C CNN
+	1    8250 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR037
+U 1 1 5E25493D
+P 8850 3400
+F 0 "#PWR037" H 8850 3250 50  0001 C CNN
+F 1 "+5V" H 8865 3573 50  0000 C CNN
+F 2 "" H 8850 3400 50  0001 C CNN
+F 3 "" H 8850 3400 50  0001 C CNN
+	1    8850 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR045
+U 1 1 5E254943
+P 9450 3400
+F 0 "#PWR045" H 9450 3250 50  0001 C CNN
+F 1 "+5V" H 9465 3573 50  0000 C CNN
+F 2 "" H 9450 3400 50  0001 C CNN
+F 3 "" H 9450 3400 50  0001 C CNN
+	1    9450 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR053
+U 1 1 5E254949
+P 10050 3400
+F 0 "#PWR053" H 10050 3250 50  0001 C CNN
+F 1 "+5V" H 10065 3573 50  0000 C CNN
+F 2 "" H 10050 3400 50  0001 C CNN
+F 3 "" H 10050 3400 50  0001 C CNN
+	1    10050 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR061
+U 1 1 5E25494F
+P 10650 3400
+F 0 "#PWR061" H 10650 3250 50  0001 C CNN
+F 1 "+5V" H 10665 3573 50  0000 C CNN
+F 2 "" H 10650 3400 50  0001 C CNN
+F 3 "" H 10650 3400 50  0001 C CNN
+	1    10650 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D4
+U 1 1 5E254955
+P 6450 4950
+F 0 "D4" H 6794 4996 50  0000 L CNN
+F 1 "WS2812B" H 6794 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 6500 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6550 4575 50  0001 L TNN
+	1    6450 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D8
+U 1 1 5E25495B
+P 7050 4950
+F 0 "D8" H 7394 4996 50  0000 L CNN
+F 1 "WS2812B" H 7394 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7100 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7150 4575 50  0001 L TNN
+	1    7050 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D12
+U 1 1 5E254961
+P 7650 4950
+F 0 "D12" H 7994 4996 50  0000 L CNN
+F 1 "WS2812B" H 7994 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7700 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7750 4575 50  0001 L TNN
+	1    7650 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D16
+U 1 1 5E254967
+P 8250 4950
+F 0 "D16" H 8594 4996 50  0000 L CNN
+F 1 "WS2812B" H 8594 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8300 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8350 4575 50  0001 L TNN
+	1    8250 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D20
+U 1 1 5E25496D
+P 8850 4950
+F 0 "D20" H 9194 4996 50  0000 L CNN
+F 1 "WS2812B" H 9194 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8900 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8950 4575 50  0001 L TNN
+	1    8850 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D24
+U 1 1 5E254973
+P 9450 4950
+F 0 "D24" H 9794 4996 50  0000 L CNN
+F 1 "WS2812B" H 9794 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 9500 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 9550 4575 50  0001 L TNN
+	1    9450 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D28
+U 1 1 5E254979
+P 10050 4950
+F 0 "D28" H 10394 4996 50  0000 L CNN
+F 1 "WS2812B" H 10394 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10100 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10150 4575 50  0001 L TNN
+	1    10050 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:WS2812B-LED D32
+U 1 1 5E25497F
+P 10650 4950
+F 0 "D32" H 10994 4996 50  0000 L CNN
+F 1 "WS2812B" H 10994 4905 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 10700 4650 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 10750 4575 50  0001 L TNN
+	1    10650 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR08
+U 1 1 5E254985
+P 6450 5250
+F 0 "#PWR08" H 6450 5000 50  0001 C CNN
+F 1 "GND" H 6455 5077 50  0000 C CNN
+F 2 "" H 6450 5250 50  0001 C CNN
+F 3 "" H 6450 5250 50  0001 C CNN
+	1    6450 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR016
+U 1 1 5E25498B
+P 7050 5250
+F 0 "#PWR016" H 7050 5000 50  0001 C CNN
+F 1 "GND" H 7055 5077 50  0000 C CNN
+F 2 "" H 7050 5250 50  0001 C CNN
+F 3 "" H 7050 5250 50  0001 C CNN
+	1    7050 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR024
+U 1 1 5E254991
+P 7650 5250
+F 0 "#PWR024" H 7650 5000 50  0001 C CNN
+F 1 "GND" H 7655 5077 50  0000 C CNN
+F 2 "" H 7650 5250 50  0001 C CNN
+F 3 "" H 7650 5250 50  0001 C CNN
+	1    7650 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR032
+U 1 1 5E254997
+P 8250 5250
+F 0 "#PWR032" H 8250 5000 50  0001 C CNN
+F 1 "GND" H 8255 5077 50  0000 C CNN
+F 2 "" H 8250 5250 50  0001 C CNN
+F 3 "" H 8250 5250 50  0001 C CNN
+	1    8250 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR040
+U 1 1 5E25499D
+P 8850 5250
+F 0 "#PWR040" H 8850 5000 50  0001 C CNN
+F 1 "GND" H 8855 5077 50  0000 C CNN
+F 2 "" H 8850 5250 50  0001 C CNN
+F 3 "" H 8850 5250 50  0001 C CNN
+	1    8850 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR048
+U 1 1 5E2549A3
+P 9450 5250
+F 0 "#PWR048" H 9450 5000 50  0001 C CNN
+F 1 "GND" H 9455 5077 50  0000 C CNN
+F 2 "" H 9450 5250 50  0001 C CNN
+F 3 "" H 9450 5250 50  0001 C CNN
+	1    9450 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR056
+U 1 1 5E2549A9
+P 10050 5250
+F 0 "#PWR056" H 10050 5000 50  0001 C CNN
+F 1 "GND" H 10055 5077 50  0000 C CNN
+F 2 "" H 10050 5250 50  0001 C CNN
+F 3 "" H 10050 5250 50  0001 C CNN
+	1    10050 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:GND-power #PWR064
+U 1 1 5E2549AF
+P 10650 5250
+F 0 "#PWR064" H 10650 5000 50  0001 C CNN
+F 1 "GND" H 10655 5077 50  0000 C CNN
+F 2 "" H 10650 5250 50  0001 C CNN
+F 3 "" H 10650 5250 50  0001 C CNN
+	1    10650 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR07
+U 1 1 5E2549B5
+P 6450 4650
+F 0 "#PWR07" H 6450 4500 50  0001 C CNN
+F 1 "+5V" H 6465 4823 50  0000 C CNN
+F 2 "" H 6450 4650 50  0001 C CNN
+F 3 "" H 6450 4650 50  0001 C CNN
+	1    6450 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR015
+U 1 1 5E2549BB
+P 7050 4650
+F 0 "#PWR015" H 7050 4500 50  0001 C CNN
+F 1 "+5V" H 7065 4823 50  0000 C CNN
+F 2 "" H 7050 4650 50  0001 C CNN
+F 3 "" H 7050 4650 50  0001 C CNN
+	1    7050 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR023
+U 1 1 5E2549C1
+P 7650 4650
+F 0 "#PWR023" H 7650 4500 50  0001 C CNN
+F 1 "+5V" H 7665 4823 50  0000 C CNN
+F 2 "" H 7650 4650 50  0001 C CNN
+F 3 "" H 7650 4650 50  0001 C CNN
+	1    7650 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR031
+U 1 1 5E2549C7
+P 8250 4650
+F 0 "#PWR031" H 8250 4500 50  0001 C CNN
+F 1 "+5V" H 8265 4823 50  0000 C CNN
+F 2 "" H 8250 4650 50  0001 C CNN
+F 3 "" H 8250 4650 50  0001 C CNN
+	1    8250 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR039
+U 1 1 5E2549CD
+P 8850 4650
+F 0 "#PWR039" H 8850 4500 50  0001 C CNN
+F 1 "+5V" H 8865 4823 50  0000 C CNN
+F 2 "" H 8850 4650 50  0001 C CNN
+F 3 "" H 8850 4650 50  0001 C CNN
+	1    8850 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR047
+U 1 1 5E2549D3
+P 9450 4650
+F 0 "#PWR047" H 9450 4500 50  0001 C CNN
+F 1 "+5V" H 9465 4823 50  0000 C CNN
+F 2 "" H 9450 4650 50  0001 C CNN
+F 3 "" H 9450 4650 50  0001 C CNN
+	1    9450 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR055
+U 1 1 5E2549D9
+P 10050 4650
+F 0 "#PWR055" H 10050 4500 50  0001 C CNN
+F 1 "+5V" H 10065 4823 50  0000 C CNN
+F 2 "" H 10050 4650 50  0001 C CNN
+F 3 "" H 10050 4650 50  0001 C CNN
+	1    10050 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:+5V-power #PWR063
+U 1 1 5E2549DF
+P 10650 4650
+F 0 "#PWR063" H 10650 4500 50  0001 C CNN
+F 1 "+5V" H 10665 4823 50  0000 C CNN
+F 2 "" H 10650 4650 50  0001 C CNN
+F 3 "" H 10650 4650 50  0001 C CNN
+	1    10650 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10950 3700 10950 4350
+Wire Wire Line
+	10950 4350 6150 4350
+Wire Wire Line
+	6150 4350 6150 4950
+Wire Wire Line
+	10950 2450 10950 3050
+Wire Wire Line
+	10950 3050 6150 3050
+Wire Wire Line
+	6150 3050 6150 3700
+Text GLabel 1050 2000 0    50   Input ~ 0
+ROW0
+Text GLabel 1050 1900 0    50   Input ~ 0
+ROW1
+Text GLabel 1050 1800 0    50   Input ~ 0
+ROW2
+Text GLabel 1050 1700 0    50   Input ~ 0
+ROW3
+Text GLabel 1050 1600 0    50   Input ~ 0
+ROW4
+Text GLabel 1050 1500 0    50   Input ~ 0
+ROW5
+Text GLabel 1050 1400 0    50   Input ~ 0
+ROW6
+Text GLabel 1050 1300 0    50   Input ~ 0
+ROW7
+Text GLabel 1050 900  0    50   Input ~ 0
+UART_TX
+Text GLabel 1050 1000 0    50   Input ~ 0
+UART_RX
+Text GLabel 1950 1300 2    50   Input ~ 0
+COL7
+Text GLabel 1950 1400 2    50   Input ~ 0
+COL6
+Text GLabel 1950 1500 2    50   Input ~ 0
+COL5
+Text GLabel 1950 1600 2    50   Input ~ 0
+COL4
+Text GLabel 1950 1700 2    50   Input ~ 0
+COL3
+Text GLabel 1950 1800 2    50   Input ~ 0
+COL2
+Text GLabel 1950 1900 2    50   Input ~ 0
+COL1
+Text GLabel 1950 2000 2    50   Input ~ 0
+COL0
+Text GLabel 1050 2100 0    50   Input ~ 0
+LED_DATA
+Text GLabel 6150 1200 0    50   Input ~ 0
+LED_DATA
+$Comp
+L hardware-rescue:R_Variable-Device S00
+U 1 1 5E29E189
+P 950 5650
+F 0 "S00" H 1078 5696 50  0000 L CNN
+F 1 " " H 1078 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 5650 50  0001 C CNN
+F 3 "~" H 950 5650 50  0001 C CNN
+	1    950  5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S01
+U 1 1 5E2A30C6
+P 1350 5650
+F 0 "S01" H 1478 5696 50  0000 L CNN
+F 1 " " H 1478 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 5650 50  0001 C CNN
+F 3 "~" H 1350 5650 50  0001 C CNN
+	1    1350 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S02
+U 1 1 5E2A436D
+P 1750 5650
+F 0 "S02" H 1878 5696 50  0000 L CNN
+F 1 " " H 1878 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 5650 50  0001 C CNN
+F 3 "~" H 1750 5650 50  0001 C CNN
+	1    1750 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S03
+U 1 1 5E2A54E5
+P 2150 5650
+F 0 "S03" H 2278 5696 50  0000 L CNN
+F 1 " " H 2278 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 5650 50  0001 C CNN
+F 3 "~" H 2150 5650 50  0001 C CNN
+	1    2150 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S04
+U 1 1 5E2A640B
+P 2550 5650
+F 0 "S04" H 2678 5696 50  0000 L CNN
+F 1 " " H 2678 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 5650 50  0001 C CNN
+F 3 "~" H 2550 5650 50  0001 C CNN
+	1    2550 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S05
+U 1 1 5E2A74A4
+P 2950 5650
+F 0 "S05" H 3078 5696 50  0000 L CNN
+F 1 " " H 3078 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 5650 50  0001 C CNN
+F 3 "~" H 2950 5650 50  0001 C CNN
+	1    2950 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S06
+U 1 1 5E2A8DF5
+P 3350 5650
+F 0 "S06" H 3478 5696 50  0000 L CNN
+F 1 " " H 3478 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 5650 50  0001 C CNN
+F 3 "~" H 3350 5650 50  0001 C CNN
+	1    3350 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S07
+U 1 1 5E2A9F80
+P 3750 5650
+F 0 "S07" H 3878 5696 50  0000 L CNN
+F 1 " " H 3878 5605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 5650 50  0001 C CNN
+F 3 "~" H 3750 5650 50  0001 C CNN
+	1    3750 5650
+	1    0    0    -1  
+$EndComp
+Text GLabel 750  5500 0    50   Input ~ 0
+ROW0
+Wire Wire Line
+	950  5800 850  5800
+Wire Wire Line
+	1350 5800 1250 5800
+Wire Wire Line
+	1750 5800 1650 5800
+Wire Wire Line
+	2150 5800 2050 5800
+Wire Wire Line
+	2550 5800 2450 5800
+Wire Wire Line
+	2950 5800 2850 5800
+Wire Wire Line
+	3350 5800 3250 5800
+Wire Wire Line
+	3750 5800 3650 5800
+$Comp
+L hardware-rescue:R_Variable-Device S10
+U 1 1 5E27C434
+P 950 5250
+F 0 "S10" H 1078 5296 50  0000 L CNN
+F 1 " " H 1078 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 5250 50  0001 C CNN
+F 3 "~" H 950 5250 50  0001 C CNN
+	1    950  5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S11
+U 1 1 5E27C43A
+P 1350 5250
+F 0 "S11" H 1478 5296 50  0000 L CNN
+F 1 " " H 1478 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 5250 50  0001 C CNN
+F 3 "~" H 1350 5250 50  0001 C CNN
+	1    1350 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S12
+U 1 1 5E27C440
+P 1750 5250
+F 0 "S12" H 1878 5296 50  0000 L CNN
+F 1 " " H 1878 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 5250 50  0001 C CNN
+F 3 "~" H 1750 5250 50  0001 C CNN
+	1    1750 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S13
+U 1 1 5E27C446
+P 2150 5250
+F 0 "S13" H 2278 5296 50  0000 L CNN
+F 1 " " H 2278 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 5250 50  0001 C CNN
+F 3 "~" H 2150 5250 50  0001 C CNN
+	1    2150 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S14
+U 1 1 5E27C44C
+P 2550 5250
+F 0 "S14" H 2678 5296 50  0000 L CNN
+F 1 " " H 2678 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 5250 50  0001 C CNN
+F 3 "~" H 2550 5250 50  0001 C CNN
+	1    2550 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S15
+U 1 1 5E27C452
+P 2950 5250
+F 0 "S15" H 3078 5296 50  0000 L CNN
+F 1 " " H 3078 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 5250 50  0001 C CNN
+F 3 "~" H 2950 5250 50  0001 C CNN
+	1    2950 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S16
+U 1 1 5E27C458
+P 3350 5250
+F 0 "S16" H 3478 5296 50  0000 L CNN
+F 1 " " H 3478 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 5250 50  0001 C CNN
+F 3 "~" H 3350 5250 50  0001 C CNN
+	1    3350 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S17
+U 1 1 5E27C45E
+P 3750 5250
+F 0 "S17" H 3878 5296 50  0000 L CNN
+F 1 " " H 3878 5205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 5250 50  0001 C CNN
+F 3 "~" H 3750 5250 50  0001 C CNN
+	1    3750 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	750  5100 950  5100
+Connection ~ 950  5100
+Wire Wire Line
+	950  5100 1350 5100
+Connection ~ 1350 5100
+Wire Wire Line
+	1350 5100 1750 5100
+Connection ~ 1750 5100
+Wire Wire Line
+	1750 5100 2150 5100
+Connection ~ 2150 5100
+Wire Wire Line
+	2150 5100 2550 5100
+Connection ~ 2550 5100
+Wire Wire Line
+	2550 5100 2950 5100
+Connection ~ 2950 5100
+Wire Wire Line
+	2950 5100 3350 5100
+Connection ~ 3350 5100
+Wire Wire Line
+	3350 5100 3750 5100
+Wire Wire Line
+	950  5400 850  5400
+Wire Wire Line
+	1350 5400 1250 5400
+Wire Wire Line
+	1750 5400 1650 5400
+Wire Wire Line
+	2150 5400 2050 5400
+Wire Wire Line
+	2550 5400 2450 5400
+Wire Wire Line
+	2950 5400 2850 5400
+Wire Wire Line
+	3350 5400 3250 5400
+Wire Wire Line
+	3750 5400 3650 5400
+Wire Wire Line
+	750  5500 950  5500
+Connection ~ 950  5500
+Wire Wire Line
+	950  5500 1350 5500
+Connection ~ 1350 5500
+Wire Wire Line
+	1350 5500 1750 5500
+Connection ~ 1750 5500
+Wire Wire Line
+	1750 5500 2150 5500
+Connection ~ 2150 5500
+Wire Wire Line
+	2150 5500 2550 5500
+Connection ~ 2550 5500
+Wire Wire Line
+	2550 5500 2950 5500
+Connection ~ 2950 5500
+Wire Wire Line
+	2950 5500 3350 5500
+Connection ~ 3350 5500
+Wire Wire Line
+	3350 5500 3750 5500
+$Comp
+L hardware-rescue:R_Variable-Device S20
+U 1 1 5E290224
+P 950 4850
+F 0 "S20" H 1078 4896 50  0000 L CNN
+F 1 " " H 1078 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 4850 50  0001 C CNN
+F 3 "~" H 950 4850 50  0001 C CNN
+	1    950  4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S21
+U 1 1 5E29022A
+P 1350 4850
+F 0 "S21" H 1478 4896 50  0000 L CNN
+F 1 " " H 1478 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 4850 50  0001 C CNN
+F 3 "~" H 1350 4850 50  0001 C CNN
+	1    1350 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S22
+U 1 1 5E290230
+P 1750 4850
+F 0 "S22" H 1878 4896 50  0000 L CNN
+F 1 " " H 1878 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 4850 50  0001 C CNN
+F 3 "~" H 1750 4850 50  0001 C CNN
+	1    1750 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S23
+U 1 1 5E290236
+P 2150 4850
+F 0 "S23" H 2278 4896 50  0000 L CNN
+F 1 " " H 2278 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 4850 50  0001 C CNN
+F 3 "~" H 2150 4850 50  0001 C CNN
+	1    2150 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S24
+U 1 1 5E29023C
+P 2550 4850
+F 0 "S24" H 2678 4896 50  0000 L CNN
+F 1 " " H 2678 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 4850 50  0001 C CNN
+F 3 "~" H 2550 4850 50  0001 C CNN
+	1    2550 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S25
+U 1 1 5E290242
+P 2950 4850
+F 0 "S25" H 3078 4896 50  0000 L CNN
+F 1 " " H 3078 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 4850 50  0001 C CNN
+F 3 "~" H 2950 4850 50  0001 C CNN
+	1    2950 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S26
+U 1 1 5E290248
+P 3350 4850
+F 0 "S26" H 3478 4896 50  0000 L CNN
+F 1 " " H 3478 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 4850 50  0001 C CNN
+F 3 "~" H 3350 4850 50  0001 C CNN
+	1    3350 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S27
+U 1 1 5E29024E
+P 3750 4850
+F 0 "S27" H 3878 4896 50  0000 L CNN
+F 1 " " H 3878 4805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 4850 50  0001 C CNN
+F 3 "~" H 3750 4850 50  0001 C CNN
+	1    3750 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	950  5000 850  5000
+Wire Wire Line
+	1350 5000 1250 5000
+Wire Wire Line
+	1750 5000 1650 5000
+Wire Wire Line
+	2150 5000 2050 5000
+Wire Wire Line
+	2550 5000 2450 5000
+Wire Wire Line
+	2950 5000 2850 5000
+Wire Wire Line
+	3350 5000 3250 5000
+Wire Wire Line
+	3750 5000 3650 5000
+$Comp
+L hardware-rescue:R_Variable-Device S30
+U 1 1 5E29025C
+P 950 4450
+F 0 "S30" H 1078 4496 50  0000 L CNN
+F 1 " " H 1078 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 4450 50  0001 C CNN
+F 3 "~" H 950 4450 50  0001 C CNN
+	1    950  4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S31
+U 1 1 5E290262
+P 1350 4450
+F 0 "S31" H 1478 4496 50  0000 L CNN
+F 1 " " H 1478 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 4450 50  0001 C CNN
+F 3 "~" H 1350 4450 50  0001 C CNN
+	1    1350 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S32
+U 1 1 5E290268
+P 1750 4450
+F 0 "S32" H 1878 4496 50  0000 L CNN
+F 1 " " H 1878 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 4450 50  0001 C CNN
+F 3 "~" H 1750 4450 50  0001 C CNN
+	1    1750 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S33
+U 1 1 5E29026E
+P 2150 4450
+F 0 "S33" H 2278 4496 50  0000 L CNN
+F 1 " " H 2278 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 4450 50  0001 C CNN
+F 3 "~" H 2150 4450 50  0001 C CNN
+	1    2150 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S34
+U 1 1 5E290274
+P 2550 4450
+F 0 "S34" H 2678 4496 50  0000 L CNN
+F 1 " " H 2678 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 4450 50  0001 C CNN
+F 3 "~" H 2550 4450 50  0001 C CNN
+	1    2550 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S35
+U 1 1 5E29027A
+P 2950 4450
+F 0 "S35" H 3078 4496 50  0000 L CNN
+F 1 " " H 3078 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 4450 50  0001 C CNN
+F 3 "~" H 2950 4450 50  0001 C CNN
+	1    2950 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S36
+U 1 1 5E290280
+P 3350 4450
+F 0 "S36" H 3478 4496 50  0000 L CNN
+F 1 " " H 3478 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 4450 50  0001 C CNN
+F 3 "~" H 3350 4450 50  0001 C CNN
+	1    3350 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S37
+U 1 1 5E290286
+P 3750 4450
+F 0 "S37" H 3878 4496 50  0000 L CNN
+F 1 " " H 3878 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 4450 50  0001 C CNN
+F 3 "~" H 3750 4450 50  0001 C CNN
+	1    3750 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	750  4300 950  4300
+Connection ~ 950  4300
+Wire Wire Line
+	950  4300 1350 4300
+Connection ~ 1350 4300
+Wire Wire Line
+	1350 4300 1750 4300
+Connection ~ 1750 4300
+Wire Wire Line
+	1750 4300 2150 4300
+Connection ~ 2150 4300
+Wire Wire Line
+	2150 4300 2550 4300
+Connection ~ 2550 4300
+Wire Wire Line
+	2550 4300 2950 4300
+Connection ~ 2950 4300
+Wire Wire Line
+	2950 4300 3350 4300
+Connection ~ 3350 4300
+Wire Wire Line
+	3350 4300 3750 4300
+Wire Wire Line
+	950  4600 850  4600
+Wire Wire Line
+	1350 4600 1250 4600
+Wire Wire Line
+	1750 4600 1650 4600
+Wire Wire Line
+	2150 4600 2050 4600
+Wire Wire Line
+	2550 4600 2450 4600
+Wire Wire Line
+	2950 4600 2850 4600
+Wire Wire Line
+	3350 4600 3250 4600
+Wire Wire Line
+	3750 4600 3650 4600
+Wire Wire Line
+	750  4700 950  4700
+Connection ~ 950  4700
+Wire Wire Line
+	950  4700 1350 4700
+Connection ~ 1350 4700
+Wire Wire Line
+	1350 4700 1750 4700
+Connection ~ 1750 4700
+Wire Wire Line
+	1750 4700 2150 4700
+Connection ~ 2150 4700
+Wire Wire Line
+	2150 4700 2550 4700
+Connection ~ 2550 4700
+Wire Wire Line
+	2550 4700 2950 4700
+Connection ~ 2950 4700
+Wire Wire Line
+	2950 4700 3350 4700
+Connection ~ 3350 4700
+Wire Wire Line
+	3350 4700 3750 4700
+$Comp
+L hardware-rescue:R_Variable-Device S40
+U 1 1 5E2AAFFF
+P 950 4050
+F 0 "S40" H 1078 4096 50  0000 L CNN
+F 1 " " H 1078 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 4050 50  0001 C CNN
+F 3 "~" H 950 4050 50  0001 C CNN
+	1    950  4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S41
+U 1 1 5E2AB005
+P 1350 4050
+F 0 "S41" H 1478 4096 50  0000 L CNN
+F 1 " " H 1478 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 4050 50  0001 C CNN
+F 3 "~" H 1350 4050 50  0001 C CNN
+	1    1350 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S42
+U 1 1 5E2AB00B
+P 1750 4050
+F 0 "S42" H 1878 4096 50  0000 L CNN
+F 1 " " H 1878 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 4050 50  0001 C CNN
+F 3 "~" H 1750 4050 50  0001 C CNN
+	1    1750 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S43
+U 1 1 5E2AB011
+P 2150 4050
+F 0 "S43" H 2278 4096 50  0000 L CNN
+F 1 " " H 2278 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 4050 50  0001 C CNN
+F 3 "~" H 2150 4050 50  0001 C CNN
+	1    2150 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S44
+U 1 1 5E2AB017
+P 2550 4050
+F 0 "S44" H 2678 4096 50  0000 L CNN
+F 1 " " H 2678 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 4050 50  0001 C CNN
+F 3 "~" H 2550 4050 50  0001 C CNN
+	1    2550 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S45
+U 1 1 5E2AB01D
+P 2950 4050
+F 0 "S45" H 3078 4096 50  0000 L CNN
+F 1 " " H 3078 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 4050 50  0001 C CNN
+F 3 "~" H 2950 4050 50  0001 C CNN
+	1    2950 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S46
+U 1 1 5E2AB023
+P 3350 4050
+F 0 "S46" H 3478 4096 50  0000 L CNN
+F 1 " " H 3478 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 4050 50  0001 C CNN
+F 3 "~" H 3350 4050 50  0001 C CNN
+	1    3350 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S47
+U 1 1 5E2AB029
+P 3750 4050
+F 0 "S47" H 3878 4096 50  0000 L CNN
+F 1 " " H 3878 4005 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 4050 50  0001 C CNN
+F 3 "~" H 3750 4050 50  0001 C CNN
+	1    3750 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	950  4200 850  4200
+Wire Wire Line
+	1350 4200 1250 4200
+Wire Wire Line
+	1750 4200 1650 4200
+Wire Wire Line
+	2150 4200 2050 4200
+Wire Wire Line
+	2550 4200 2450 4200
+Wire Wire Line
+	2950 4200 2850 4200
+Wire Wire Line
+	3350 4200 3250 4200
+Wire Wire Line
+	3750 4200 3650 4200
+$Comp
+L hardware-rescue:R_Variable-Device S50
+U 1 1 5E2AB037
+P 950 3650
+F 0 "S50" H 1078 3696 50  0000 L CNN
+F 1 " " H 1078 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 3650 50  0001 C CNN
+F 3 "~" H 950 3650 50  0001 C CNN
+	1    950  3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S51
+U 1 1 5E2AB03D
+P 1350 3650
+F 0 "S51" H 1478 3696 50  0000 L CNN
+F 1 " " H 1478 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 3650 50  0001 C CNN
+F 3 "~" H 1350 3650 50  0001 C CNN
+	1    1350 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S52
+U 1 1 5E2AB043
+P 1750 3650
+F 0 "S52" H 1878 3696 50  0000 L CNN
+F 1 " " H 1878 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 3650 50  0001 C CNN
+F 3 "~" H 1750 3650 50  0001 C CNN
+	1    1750 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S53
+U 1 1 5E2AB049
+P 2150 3650
+F 0 "S53" H 2278 3696 50  0000 L CNN
+F 1 " " H 2278 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 3650 50  0001 C CNN
+F 3 "~" H 2150 3650 50  0001 C CNN
+	1    2150 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S54
+U 1 1 5E2AB04F
+P 2550 3650
+F 0 "S54" H 2678 3696 50  0000 L CNN
+F 1 " " H 2678 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 3650 50  0001 C CNN
+F 3 "~" H 2550 3650 50  0001 C CNN
+	1    2550 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S55
+U 1 1 5E2AB055
+P 2950 3650
+F 0 "S55" H 3078 3696 50  0000 L CNN
+F 1 " " H 3078 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 3650 50  0001 C CNN
+F 3 "~" H 2950 3650 50  0001 C CNN
+	1    2950 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S56
+U 1 1 5E2AB05B
+P 3350 3650
+F 0 "S56" H 3478 3696 50  0000 L CNN
+F 1 " " H 3478 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 3650 50  0001 C CNN
+F 3 "~" H 3350 3650 50  0001 C CNN
+	1    3350 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S57
+U 1 1 5E2AB061
+P 3750 3650
+F 0 "S57" H 3878 3696 50  0000 L CNN
+F 1 " " H 3878 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 3650 50  0001 C CNN
+F 3 "~" H 3750 3650 50  0001 C CNN
+	1    3750 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	750  3500 950  3500
+Connection ~ 950  3500
+Wire Wire Line
+	950  3500 1350 3500
+Connection ~ 1350 3500
+Wire Wire Line
+	1350 3500 1750 3500
+Connection ~ 1750 3500
+Wire Wire Line
+	1750 3500 2150 3500
+Connection ~ 2150 3500
+Wire Wire Line
+	2150 3500 2550 3500
+Connection ~ 2550 3500
+Wire Wire Line
+	2550 3500 2950 3500
+Connection ~ 2950 3500
+Wire Wire Line
+	2950 3500 3350 3500
+Connection ~ 3350 3500
+Wire Wire Line
+	3350 3500 3750 3500
+Wire Wire Line
+	950  3800 850  3800
+Wire Wire Line
+	1350 3800 1250 3800
+Wire Wire Line
+	1750 3800 1650 3800
+Wire Wire Line
+	2150 3800 2050 3800
+Wire Wire Line
+	2550 3800 2450 3800
+Wire Wire Line
+	2950 3800 2850 3800
+Wire Wire Line
+	3350 3800 3250 3800
+Wire Wire Line
+	3750 3800 3650 3800
+Wire Wire Line
+	750  3900 950  3900
+Connection ~ 950  3900
+Wire Wire Line
+	950  3900 1350 3900
+Connection ~ 1350 3900
+Wire Wire Line
+	1350 3900 1750 3900
+Connection ~ 1750 3900
+Wire Wire Line
+	1750 3900 2150 3900
+Connection ~ 2150 3900
+Wire Wire Line
+	2150 3900 2550 3900
+Connection ~ 2550 3900
+Wire Wire Line
+	2550 3900 2950 3900
+Connection ~ 2950 3900
+Wire Wire Line
+	2950 3900 3350 3900
+Connection ~ 3350 3900
+Wire Wire Line
+	3350 3900 3750 3900
+$Comp
+L hardware-rescue:R_Variable-Device S60
+U 1 1 5E2AB08D
+P 950 3250
+F 0 "S60" H 1078 3296 50  0000 L CNN
+F 1 " " H 1078 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 3250 50  0001 C CNN
+F 3 "~" H 950 3250 50  0001 C CNN
+	1    950  3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S61
+U 1 1 5E2AB093
+P 1350 3250
+F 0 "S61" H 1478 3296 50  0000 L CNN
+F 1 " " H 1478 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 3250 50  0001 C CNN
+F 3 "~" H 1350 3250 50  0001 C CNN
+	1    1350 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S62
+U 1 1 5E2AB099
+P 1750 3250
+F 0 "S62" H 1878 3296 50  0000 L CNN
+F 1 " " H 1878 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 3250 50  0001 C CNN
+F 3 "~" H 1750 3250 50  0001 C CNN
+	1    1750 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S63
+U 1 1 5E2AB09F
+P 2150 3250
+F 0 "S63" H 2278 3296 50  0000 L CNN
+F 1 " " H 2278 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 3250 50  0001 C CNN
+F 3 "~" H 2150 3250 50  0001 C CNN
+	1    2150 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S64
+U 1 1 5E2AB0A5
+P 2550 3250
+F 0 "S64" H 2678 3296 50  0000 L CNN
+F 1 " " H 2678 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 3250 50  0001 C CNN
+F 3 "~" H 2550 3250 50  0001 C CNN
+	1    2550 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S65
+U 1 1 5E2AB0AB
+P 2950 3250
+F 0 "S65" H 3078 3296 50  0000 L CNN
+F 1 " " H 3078 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 3250 50  0001 C CNN
+F 3 "~" H 2950 3250 50  0001 C CNN
+	1    2950 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S66
+U 1 1 5E2AB0B1
+P 3350 3250
+F 0 "S66" H 3478 3296 50  0000 L CNN
+F 1 " " H 3478 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 3250 50  0001 C CNN
+F 3 "~" H 3350 3250 50  0001 C CNN
+	1    3350 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S67
+U 1 1 5E2AB0B7
+P 3750 3250
+F 0 "S67" H 3878 3296 50  0000 L CNN
+F 1 " " H 3878 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 3250 50  0001 C CNN
+F 3 "~" H 3750 3250 50  0001 C CNN
+	1    3750 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	950  3400 850  3400
+Wire Wire Line
+	1350 3400 1250 3400
+Wire Wire Line
+	1750 3400 1650 3400
+Wire Wire Line
+	2150 3400 2050 3400
+Wire Wire Line
+	2550 3400 2450 3400
+Wire Wire Line
+	2950 3400 2850 3400
+Wire Wire Line
+	3350 3400 3250 3400
+Wire Wire Line
+	3750 3400 3650 3400
+$Comp
+L hardware-rescue:R_Variable-Device S70
+U 1 1 5E2AB0C5
+P 950 2850
+F 0 "S70" H 1078 2896 50  0000 L CNN
+F 1 " " H 1078 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 880 2850 50  0001 C CNN
+F 3 "~" H 950 2850 50  0001 C CNN
+	1    950  2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S71
+U 1 1 5E2AB0CB
+P 1350 2850
+F 0 "S71" H 1478 2896 50  0000 L CNN
+F 1 " " H 1478 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1280 2850 50  0001 C CNN
+F 3 "~" H 1350 2850 50  0001 C CNN
+	1    1350 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S72
+U 1 1 5E2AB0D1
+P 1750 2850
+F 0 "S72" H 1878 2896 50  0000 L CNN
+F 1 " " H 1878 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 1680 2850 50  0001 C CNN
+F 3 "~" H 1750 2850 50  0001 C CNN
+	1    1750 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S73
+U 1 1 5E2AB0D7
+P 2150 2850
+F 0 "S73" H 2278 2896 50  0000 L CNN
+F 1 " " H 2278 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2080 2850 50  0001 C CNN
+F 3 "~" H 2150 2850 50  0001 C CNN
+	1    2150 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S74
+U 1 1 5E2AB0DD
+P 2550 2850
+F 0 "S74" H 2678 2896 50  0000 L CNN
+F 1 " " H 2678 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2480 2850 50  0001 C CNN
+F 3 "~" H 2550 2850 50  0001 C CNN
+	1    2550 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S75
+U 1 1 5E2AB0E3
+P 2950 2850
+F 0 "S75" H 3078 2896 50  0000 L CNN
+F 1 " " H 3078 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 2880 2850 50  0001 C CNN
+F 3 "~" H 2950 2850 50  0001 C CNN
+	1    2950 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S76
+U 1 1 5E2AB0E9
+P 3350 2850
+F 0 "S76" H 3478 2896 50  0000 L CNN
+F 1 " " H 3478 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3280 2850 50  0001 C CNN
+F 3 "~" H 3350 2850 50  0001 C CNN
+	1    3350 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L hardware-rescue:R_Variable-Device S77
+U 1 1 5E2AB0EF
+P 3750 2850
+F 0 "S77" H 3878 2896 50  0000 L CNN
+F 1 " " H 3878 2805 50  0000 L CNN
+F 2 "Resistor_SMD:R_1218_3246Metric" V 3680 2850 50  0001 C CNN
+F 3 "~" H 3750 2850 50  0001 C CNN
+	1    3750 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	750  2700 950  2700
+Connection ~ 950  2700
+Wire Wire Line
+	950  2700 1350 2700
+Connection ~ 1350 2700
+Wire Wire Line
+	1350 2700 1750 2700
+Connection ~ 1750 2700
+Wire Wire Line
+	1750 2700 2150 2700
+Connection ~ 2150 2700
+Wire Wire Line
+	2150 2700 2550 2700
+Connection ~ 2550 2700
+Wire Wire Line
+	2550 2700 2950 2700
+Connection ~ 2950 2700
+Wire Wire Line
+	2950 2700 3350 2700
+Connection ~ 3350 2700
+Wire Wire Line
+	950  3000 850  3000
+Wire Wire Line
+	1350 3000 1250 3000
+Wire Wire Line
+	1750 3000 1650 3000
+Wire Wire Line
+	2150 3000 2050 3000
+Wire Wire Line
+	2550 3000 2450 3000
+Wire Wire Line
+	2950 3000 2850 3000
+Wire Wire Line
+	3350 3000 3250 3000
+Wire Wire Line
+	3750 3000 3650 3000
+Wire Wire Line
+	750  3100 950  3100
+Connection ~ 950  3100
+Wire Wire Line
+	950  3100 1350 3100
+Connection ~ 1350 3100
+Wire Wire Line
+	1350 3100 1750 3100
+Connection ~ 1750 3100
+Wire Wire Line
+	1750 3100 2150 3100
+Connection ~ 2150 3100
+Wire Wire Line
+	2150 3100 2550 3100
+Connection ~ 2550 3100
+Wire Wire Line
+	2550 3100 2950 3100
+Connection ~ 2950 3100
+Wire Wire Line
+	2950 3100 3350 3100
+Connection ~ 3350 3100
+Wire Wire Line
+	3350 3100 3750 3100
+Text GLabel 750  5100 0    50   Input ~ 0
+ROW1
+Text GLabel 750  4700 0    50   Input ~ 0
+ROW2
+Text GLabel 750  4300 0    50   Input ~ 0
+ROW3
+Text GLabel 750  3900 0    50   Input ~ 0
+ROW4
+Text GLabel 750  3500 0    50   Input ~ 0
+ROW5
+Text GLabel 750  3100 0    50   Input ~ 0
+ROW6
+Text GLabel 750  2700 0    50   Input ~ 0
+ROW7
+Connection ~ 3650 3800
+Wire Wire Line
+	3650 3800 3650 4200
+Connection ~ 3650 4200
+Wire Wire Line
+	3650 4200 3650 4600
+Connection ~ 3650 4600
+Wire Wire Line
+	3650 4600 3650 5000
+Connection ~ 3650 5000
+Wire Wire Line
+	3650 5000 3650 5400
+Connection ~ 3650 5400
+Wire Wire Line
+	3650 5400 3650 5800
+Wire Wire Line
+	3250 3000 3250 3400
+Connection ~ 3250 3400
+Wire Wire Line
+	3250 3400 3250 3800
+Connection ~ 3250 3800
+Wire Wire Line
+	3250 3800 3250 4200
+Connection ~ 3250 4200
+Wire Wire Line
+	3250 4200 3250 4600
+Connection ~ 3250 4600
+Wire Wire Line
+	3250 4600 3250 5000
+Connection ~ 3250 5000
+Wire Wire Line
+	3250 5000 3250 5400
+Connection ~ 3250 5400
+Wire Wire Line
+	3250 5400 3250 5800
+Wire Wire Line
+	2850 5800 2850 5400
+Connection ~ 2850 3400
+Wire Wire Line
+	2850 3400 2850 3000
+Connection ~ 2850 3800
+Wire Wire Line
+	2850 3800 2850 3400
+Connection ~ 2850 4200
+Wire Wire Line
+	2850 4200 2850 3800
+Connection ~ 2850 4600
+Wire Wire Line
+	2850 4600 2850 4200
+Connection ~ 2850 5000
+Wire Wire Line
+	2850 5000 2850 4600
+Connection ~ 2850 5400
+Wire Wire Line
+	2850 5400 2850 5000
+Wire Wire Line
+	2450 3000 2450 3400
+Connection ~ 2450 3400
+Wire Wire Line
+	2450 3400 2450 3800
+Connection ~ 2450 3800
+Wire Wire Line
+	2450 3800 2450 4200
+Connection ~ 2450 4200
+Wire Wire Line
+	2450 4200 2450 4600
+Connection ~ 2450 4600
+Wire Wire Line
+	2450 4600 2450 5000
+Connection ~ 2450 5000
+Wire Wire Line
+	2450 5000 2450 5400
+Connection ~ 2450 5400
+Wire Wire Line
+	2450 5400 2450 5800
+Wire Wire Line
+	2050 5800 2050 5400
+Connection ~ 2050 3400
+Wire Wire Line
+	2050 3400 2050 3000
+Connection ~ 2050 3800
+Wire Wire Line
+	2050 3800 2050 3400
+Connection ~ 2050 4200
+Wire Wire Line
+	2050 4200 2050 3800
+Connection ~ 2050 4600
+Wire Wire Line
+	2050 4600 2050 4200
+Connection ~ 2050 5000
+Wire Wire Line
+	2050 5000 2050 4600
+Connection ~ 2050 5400
+Wire Wire Line
+	2050 5400 2050 5000
+Wire Wire Line
+	1650 3000 1650 3400
+Connection ~ 1650 3400
+Wire Wire Line
+	1650 3400 1650 3800
+Connection ~ 1650 3800
+Wire Wire Line
+	1650 3800 1650 4200
+Connection ~ 1650 4200
+Wire Wire Line
+	1650 4200 1650 4600
+Connection ~ 1650 4600
+Wire Wire Line
+	1650 4600 1650 5000
+Connection ~ 1650 5000
+Wire Wire Line
+	1650 5000 1650 5400
+Connection ~ 1650 5400
+Wire Wire Line
+	1650 5400 1650 5800
+Wire Wire Line
+	1250 5800 1250 5400
+Connection ~ 1250 3400
+Wire Wire Line
+	1250 3400 1250 3000
+Connection ~ 1250 3800
+Wire Wire Line
+	1250 3800 1250 3400
+Connection ~ 1250 4200
+Wire Wire Line
+	1250 4200 1250 3800
+Connection ~ 1250 4600
+Wire Wire Line
+	1250 4600 1250 4200
+Connection ~ 1250 5000
+Wire Wire Line
+	1250 5000 1250 4600
+Connection ~ 1250 5400
+Wire Wire Line
+	1250 5400 1250 5000
+Wire Wire Line
+	850  3000 850  3400
+Connection ~ 850  3400
+Wire Wire Line
+	850  3400 850  3800
+Connection ~ 850  3800
+Wire Wire Line
+	850  3800 850  4200
+Connection ~ 850  4200
+Wire Wire Line
+	850  4200 850  4600
+Connection ~ 850  4600
+Wire Wire Line
+	850  4600 850  5000
+Connection ~ 850  5000
+Wire Wire Line
+	850  5000 850  5400
+Connection ~ 850  5400
+Wire Wire Line
+	850  5400 850  5800
+Wire Wire Line
+	3350 2700 3750 2700
+Wire Wire Line
+	3650 3400 3650 3000
+Wire Wire Line
+	3650 3400 3650 3800
+Connection ~ 3650 3400
+Text GLabel 850  5800 3    50   Input ~ 0
+COL0
+Text GLabel 1250 5800 3    50   Input ~ 0
+COL1
+Text GLabel 1650 5800 3    50   Input ~ 0
+COL2
+Text GLabel 2050 5800 3    50   Input ~ 0
+COL3
+Text GLabel 2450 5800 3    50   Input ~ 0
+COL4
+Text GLabel 2850 5800 3    50   Input ~ 0
+COL5
+Text GLabel 3250 5800 3    50   Input ~ 0
+COL6
+Text GLabel 3650 5800 3    50   Input ~ 0
+COL7
+$EndSCHEMATC
