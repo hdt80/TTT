@@ -15,17 +15,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L LED:WS2812B D0
-U 1 1 5E3231BA
-P 5000 1500
-F 0 "D0" H 5100 1750 50  0000 L CNN
-F 1 "WS2812B" H 5100 1850 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 5050 1200 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 5100 1125 50  0001 L TNN
-	1    5000 1500
-	1    0    0    -1  
-$EndComp
-$Comp
 L MCU_Module:ArduinoNano_r3.3 U1
 U 1 1 5E2FA277
 P 1450 1500
@@ -42,65 +31,10 @@ Text GLabel 1000 900  0    50   Input ~ 0
 USB_TR
 Text GLabel 1000 1000 0    50   Input ~ 0
 USB_RX
-Text GLabel 4700 1500 0    50   Input ~ 0
-LED_DATA
 Text GLabel 1900 900  2    50   Input ~ 0
 G_VCC
 Text GLabel 1900 1000 2    50   Input ~ 0
-G_GND
-Text GLabel 5000 1200 0    50   Input ~ 0
-G_VCC
-Text GLabel 5000 1800 0    50   Input ~ 0
-G_GND
-$Comp
-L LED:WS2812B D1
-U 1 1 5E2FDCCC
-P 6000 1500
-F 0 "D1" H 6100 1750 50  0000 L CNN
-F 1 "WS2812B" H 6100 1850 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 6050 1200 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6100 1125 50  0001 L TNN
-	1    6000 1500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5300 1500 5700 1500
-Text GLabel 6000 1200 0    50   Input ~ 0
-G_VCC
-Text GLabel 6000 1800 0    50   Input ~ 0
-G_GND
-$Comp
-L LED:WS2812B D2
-U 1 1 5E2FFAA9
-P 5000 2500
-F 0 "D2" H 5100 2750 50  0000 L CNN
-F 1 "WS2812B" H 5100 2850 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 5050 2200 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 5100 2125 50  0001 L TNN
-	1    5000 2500
-	1    0    0    -1  
-$EndComp
-Text GLabel 5000 2200 0    50   Input ~ 0
-G_VCC
-Text GLabel 5000 2800 0    50   Input ~ 0
-G_GND
-$Comp
-L LED:WS2812B D3
-U 1 1 5E303945
-P 6000 2500
-F 0 "D3" H 6100 2750 50  0000 L CNN
-F 1 "WS2812B" H 6100 2850 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 6050 2200 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6100 2125 50  0001 L TNN
-	1    6000 2500
-	1    0    0    -1  
-$EndComp
-Text GLabel 6000 2200 0    50   Input ~ 0
-G_VCC
-Text GLabel 6000 2800 0    50   Input ~ 0
-G_GND
-Wire Wire Line
-	5300 2500 5700 2500
+GND
 NoConn ~ 1000 1100
 NoConn ~ 1000 1200
 NoConn ~ 1000 1300
@@ -126,10 +60,213 @@ NoConn ~ 1900 1400
 NoConn ~ 1900 1300
 NoConn ~ 1900 1200
 NoConn ~ 1900 1100
+Text GLabel 8350 950  2    50   Input ~ 0
+G_VCC
+$Comp
+L LED:Neopixel5050 D1
+U 1 1 5E311678
+P 7000 1500
+F 0 "D1" H 7000 1650 50  0000 C CNN
+F 1 "Neopixel5050" H 7000 1350 50  0000 C CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7000 1500 50  0001 C CNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7000 1500 50  0001 C CNN
+	1    7000 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:Neopixel5050 D2
+U 1 1 5E3138FD
+P 8000 1500
+F 0 "D2" H 8000 1650 50  0000 C CNN
+F 1 "Neopixel5050" H 8000 1350 50  0000 C CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8000 1500 50  0001 C CNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8000 1500 50  0001 C CNN
+	1    8000 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:Neopixel5050 D3
+U 1 1 5E3146B4
+P 7000 2500
+F 0 "D3" H 7000 2650 50  0000 C CNN
+F 1 "Neopixel5050" H 7000 2350 50  0000 C CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7000 2500 50  0001 C CNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7000 2500 50  0001 C CNN
+	1    7000 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:Neopixel5050 D4
+U 1 1 5E314B56
+P 8000 2500
+F 0 "D4" H 8000 2650 50  0000 C CNN
+F 1 "Neopixel5050" H 8000 2350 50  0000 C CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 8000 2500 50  0001 C CNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8000 2500 50  0001 C CNN
+	1    8000 2500
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
-	6300 1500 6300 2000
+	7350 1550 7350 1700
 Wire Wire Line
-	6300 2000 4700 2000
+	7350 1700 8350 1700
 Wire Wire Line
-	4700 2000 4700 2500
+	8350 1700 8350 1550
+Text GLabel 8350 1700 2    50   Input ~ 0
+GND
+Text GLabel 8350 1450 2    50   Input ~ 0
+LED_DATA
+Wire Wire Line
+	7650 1550 7400 1550
+Wire Wire Line
+	7400 1550 7400 1450
+Wire Wire Line
+	7400 1450 7350 1450
+Wire Wire Line
+	8350 950  7650 950 
+Wire Wire Line
+	7650 950  7650 1050
+Wire Wire Line
+	7650 1050 7550 1050
+Connection ~ 7650 1050
+Wire Wire Line
+	7650 1050 7650 1450
+$Comp
+L Device:C C2
+U 1 1 5E31F42A
+P 7550 1200
+F 0 "C2" H 7435 1154 50  0000 R CNN
+F 1 "C" H 7435 1245 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7588 1050 50  0001 C CNN
+F 3 "~" H 7550 1200 50  0001 C CNN
+	1    7550 1200
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 5E31F9BB
+P 7550 1350
+F 0 "#PWR02" H 7550 1100 50  0001 C CNN
+F 1 "GND" H 7555 1177 50  0000 C CNN
+F 2 "" H 7550 1350 50  0001 C CNN
+F 3 "" H 7550 1350 50  0001 C CNN
+	1    7550 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 950  6650 950 
+Wire Wire Line
+	6650 950  6650 1050
+Connection ~ 7650 950 
+Wire Wire Line
+	6650 1050 6550 1050
+Connection ~ 6650 1050
+Wire Wire Line
+	6650 1050 6650 1450
+$Comp
+L Device:C C1
+U 1 1 5E320695
+P 6550 1200
+F 0 "C1" H 6435 1154 50  0000 R CNN
+F 1 "C" H 6435 1245 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 6588 1050 50  0001 C CNN
+F 3 "~" H 6550 1200 50  0001 C CNN
+	1    6550 1200
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 5E320A1C
+P 6550 1350
+F 0 "#PWR01" H 6550 1100 50  0001 C CNN
+F 1 "GND" H 6555 1177 50  0000 C CNN
+F 2 "" H 6550 1350 50  0001 C CNN
+F 3 "" H 6550 1350 50  0001 C CNN
+	1    6550 1350
+	1    0    0    -1  
+$EndComp
+Text GLabel 6650 1550 0    50   Input ~ 0
+LED_R0t1
+Text GLabel 8350 2450 2    50   Input ~ 0
+LED_R0t1
+Wire Wire Line
+	7650 2550 7400 2550
+Wire Wire Line
+	7400 2550 7400 2450
+Wire Wire Line
+	7400 2450 7350 2450
+NoConn ~ 6650 2550
+Text GLabel 8350 1950 2    50   Input ~ 0
+G_VCC
+Wire Wire Line
+	8350 1950 7650 1950
+Wire Wire Line
+	7650 1950 7650 2050
+Wire Wire Line
+	7650 2050 7550 2050
+Connection ~ 7650 2050
+Wire Wire Line
+	7650 2050 7650 2450
+$Comp
+L Device:C C4
+U 1 1 5E327926
+P 7550 2200
+F 0 "C4" H 7435 2154 50  0000 R CNN
+F 1 "C" H 7435 2245 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 7588 2050 50  0001 C CNN
+F 3 "~" H 7550 2200 50  0001 C CNN
+	1    7550 2200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7650 1950 6650 1950
+Wire Wire Line
+	6650 1950 6650 2050
+Connection ~ 7650 1950
+Wire Wire Line
+	6650 2050 6550 2050
+Connection ~ 6650 2050
+Wire Wire Line
+	6650 2050 6650 2450
+$Comp
+L Device:C C3
+U 1 1 5E327932
+P 6550 2200
+F 0 "C3" H 6435 2154 50  0000 R CNN
+F 1 "C" H 6435 2245 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 6588 2050 50  0001 C CNN
+F 3 "~" H 6550 2200 50  0001 C CNN
+	1    6550 2200
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 5E327C07
+P 7550 2350
+F 0 "#PWR04" H 7550 2100 50  0001 C CNN
+F 1 "GND" H 7555 2177 50  0000 C CNN
+F 2 "" H 7550 2350 50  0001 C CNN
+F 3 "" H 7550 2350 50  0001 C CNN
+	1    7550 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR03
+U 1 1 5E3281F7
+P 6550 2350
+F 0 "#PWR03" H 6550 2100 50  0001 C CNN
+F 1 "GND" H 6555 2177 50  0000 C CNN
+F 2 "" H 6550 2350 50  0001 C CNN
+F 3 "" H 6550 2350 50  0001 C CNN
+	1    6550 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8350 2550 8350 2700
+Wire Wire Line
+	8350 2700 7350 2700
+Wire Wire Line
+	7350 2700 7350 2550
+Text GLabel 8350 2700 2    50   Input ~ 0
+GND
 $EndSCHEMATC
