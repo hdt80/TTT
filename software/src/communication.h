@@ -95,6 +95,13 @@ int comm_handshake();
 int comm_led_on(u8 col, u8 row, u8 color);
 
 /*
+ * Perform a grid read
+ *
+ * returns: 0 on success, -1 on error (printed to stderr)
+ */
+int comm_grid_read(u8* result);
+
+/*
  * Method to run in a detached thread
  *
  * @filename - Not currently used

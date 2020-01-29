@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "logger.h"
 #include "communication.h"
+
+void test_led(void);
 
 int main(int argc, char** argv) {
 	infof("TTT test program\n");
@@ -17,6 +20,15 @@ int main(int argc, char** argv) {
 
 	comm_handshake();
 
+	u8* grid_data = malloc(64);
+	comm_grid_read(grid_data);
+
+	//test_led();
+
+	return 0;
+}
+
+void test_led(void) {
 	unsigned char col = 0;
 	unsigned char row = 0;
 	unsigned char color = 0;
@@ -41,8 +53,7 @@ int main(int argc, char** argv) {
 			++color;
 		}
 
-		//sleep(1);
+		//sleep(5);
 	}
 
-	return 0;
 }

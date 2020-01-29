@@ -259,6 +259,44 @@ int comm_led_on(u8 col, u8 row, u8 color) {
 	return 0;
 }
 
+int comm_grid_read(u8* result) {
+	if (comm_fd == -1) {
+		errorf("Cannot read grid, fd is not set\n");
+		return -1;
+	}
+	if (comm_busy() == 1) {
+		errorf("A command is currently being executed, cannot read grid\n");
+		return -1;
+	}
+
+	debugf("comm_grid_read> Performing grid read\n");
+
+	comm_status = STATUS_RUNNING;
+
+	const unsigned char msg[] = {
+		0x10
+	};
+
+	int res = write(comm_fd, msg, 1);
+
+	while(comm_busy() == 1);
+
+	comm_response data = comm_read();
+
+	if (data.command == 0x10) {
+		if (data.result == RESPONSE_RESULT_SUCCESS) {
+			infof("comm_read_grid> Read %d entries\n", data.length);
+		} else {
+			errorf("comm_read_grid> Failed to read grid\n");
+		}
+	} else {
+		warnf("Failed to get command back. Got: 0x%02x\n", data.command);
+	}
+
+	return 0;
+
+}
+
 void* comm_task(void* filename) {
 	u8 status = 0x00;
 	u8 length = 0x00;
@@ -295,7 +333,7 @@ void* comm_task(void* filename) {
 				free(response);
 			}
 
-			// +1 for the command byte
+			// +1 for command byte
 			response = malloc(1 + length);
 
 			debugf("comm_task> Response started\n");
@@ -303,7 +341,7 @@ void* comm_task(void* filename) {
 			debugf("\tlength: 0x%02x\n", length);
 			debugf("\tdata: ");
 
-			index = 0x01;
+			index = 0x01; // Already read the first byte
 
 			response[0] = res;
 
@@ -318,6 +356,12 @@ void* comm_task(void* filename) {
 				printf("\n");
 				debugf("Response done\n");
 
+				u8* res_data = NULL;
+				if (length > 0) {
+					debugf("\tAllocating %d bytes for data\n", length);
+					res_data = malloc(length);
+				}
+
 				comm_response res = {
 					.result = status,
 					.command = response[1],
@@ -326,7 +370,6 @@ void* comm_task(void* filename) {
 				};
 
 				comm_buffer[comm_buffer_length] = res;
-
 				//++comm_buffer_length;
 
 				index = 0x01;
