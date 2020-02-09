@@ -157,7 +157,7 @@ ISR(USART_RX_vect) {
 				break;
 
 			case MSG_TYPE_GRID:
-				fputc(0x80 | 5, stdout);
+				fputc(0x80 | 0x20 | 6, stdout);
 				fputc(msg_buffer[0], stdout);
 				for (u8 i = 0; i < 64; ++i) {
 					fputc(grid_data[i], stdout);

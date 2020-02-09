@@ -87,7 +87,7 @@ A response contains single byte header, followed by the command byte, then optio
 
 Bit 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
 ----- | - | - | - | - | - | - | -
-1     | R | N | N | N | N | N | N
+1     | R | D | 0 | 0 | N | N | N
 
 Note: The first bit of a response is always a 1, this is to tell if a received message is a response or a logging entry
 
@@ -100,14 +100,25 @@ Type selection | Description | Meaning
 0 | Success | The command was successfully completed.
 1 | Error | The command was not completed. 
 
+#### D - Data available
+
+Will data bytes follow the command byte?
+
+Value | Description
+----- | -----
+0 | No data follows
+1 | Data follows
+
 #### N - Data length
+
+If data is available (D == 1), 2^N data bytes follow the command byte
 
 Value | Descrition
 ----- | -----
-000000 | No bytes follow this header. 
-000001 | 1 byte follows this header.
+000 | 1 byte follows the command byte
+001 | 2 data bytes follow the command byte
 ... | ...
-111111 | 127 bytes follow the header.
+111 | 128 data bytes follow the command byte
 
 ## Hardware logging entry
 

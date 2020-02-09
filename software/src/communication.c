@@ -297,14 +297,31 @@ int comm_grid_read(u8* result) {
 
 }
 
+typedef enum SM_COMM_s {
+	IDLE,
+	CMD,
+	READING
+} SM_COMM;
+
 void* comm_task(void* filename) {
 	u8 status = 0x00;
 	u8 length = 0x00;
 	u8 index = 0x00;
+	u8 data_avail = 0x00;
+
 	u8* response = NULL;
+
+	SM_COMM state = IDLE;
 
 	u8* buf = malloc(1);
 	u8 res;
+
+	comm_response pending_response = {
+		.result = 0,
+		.command = 0x00,
+		.length = 0,
+		.data = NULL
+	};
 
 	int s;
 
@@ -321,52 +338,89 @@ void* comm_task(void* filename) {
 
 		res = *buf;
 
-		// Is this the start of a new response? Ensure the MSB is set
-		if (length == 0x00 && ((res & 0x80) == 0x80)) {
-			comm_status = STATUS_RUNNING;
+		if (state == IDLE) {
+			if ((res & 0x80) == 0x80) {
+				status = (res & RESPONSE_STATUS_MASK) >> RESPONSE_STATUS_OFFSET;
+				data_avail = (res & RESPONSE_DATA_MASK) >> RESPONSE_DATA_OFFSET;
 
-			status = (res & RESPONSE_STATUS_MASK) >> RESPONSE_STATUS_OFFSET;
-			length = (res & RESPONSE_LENGTH_MASK) >> RESPONSE_LENGTH_OFFSET;
-			length = pow(2, length);
+				if (data_avail == 1) {
+					length = (res & RESPONSE_LENGTH_MASK) >> RESPONSE_LENGTH_OFFSET;
+					length = pow(2, length);
+				} else {
+					length = 0;
+				}
 
-			if (response != NULL) {
-				free(response);
+				if (response != NULL) {
+					free(response);
+				}
+
+				// +2 for header and command byte
+				response = malloc(2 + length);
+
+				debugf("comm_task> Response started\n");
+				debugf("\tstatus: 0x%02x\n", status);
+				debugf("\tavail:  0x%02x\n", data_avail);
+				debugf("\tlength: 0x%02x\n", length);
+				debugf("\tdata: ");
+
+				index = 0x01; // Already read the first byte
+
+				response[0] = res;
+
+				printf("0x%02x ", res);
+
+				comm_status = STATUS_RUNNING;
+				state = CMD;
+			} else {
+				printf("%c", res);
 			}
+		} else if (state == CMD) {
+			response[index] = res;
+			++index;
 
-			// +1 for command byte
-			response = malloc(1 + length);
+			if (data_avail == 1) {
+				state = READING;
+			} else {
+				printf("\n");
+				debugf("comm_task> no data: skipping READING state\n");
 
-			debugf("comm_task> Response started\n");
-			debugf("\tstatus: 0x%02x\n", status);
-			debugf("\tlength: 0x%02x\n", length);
-			debugf("\tdata: ");
+				comm_response res = {
+					.result = status,
+					.command = response[1],
+					.length = 0,
+					.data = NULL
+				};
 
-			index = 0x01; // Already read the first byte
+				comm_buffer[comm_buffer_length] = res;
 
-			response[0] = res;
-
-			printf("0x%02x ", res);
-		} else if (length > 0x00) { // Currently processing a msg
+				comm_status = STATUS_IDLE;
+				state = IDLE;
+			}
+		} else if (state == READING) {
 			response[index] = res;
 
-			//debugf("\t0x%02x (%i/%i)\n", res, index, length);
 			printf("0x%02x ", res);
 
-			if (index == length) {
+			if (index >= length) {
 				printf("\n");
-				debugf("Response done\n");
+				debugf("comm_task> Response done\n");
 
 				u8* res_data = NULL;
 				if (length > 0) {
 					debugf("\tAllocating %d bytes for data\n", length);
 					res_data = malloc(length);
+
+					for (u8 i = 0; i < length; ++i) {
+						// Ignore header and command bytes
+						res_data[i] = response[i + 2];
+					}
 				}
 
 				comm_response res = {
 					.result = status,
 					.command = response[1],
 					.length = length,
-					.data = NULL
+					.data = res_data
 				};
 
 				comm_buffer[comm_buffer_length] = res;
@@ -377,11 +431,12 @@ void* comm_task(void* filename) {
 				length = 0x00;
 
 				comm_status = STATUS_IDLE;
+				state = IDLE;
 			} else {
 				++index;
 			}
-		} else { // This is a logging message
-			printf("%c", res);
+		} else {
+			printf("hello? %c", res);
 		}
 	}
 

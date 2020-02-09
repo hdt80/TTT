@@ -23,6 +23,11 @@ int main(int argc, char** argv) {
 	u8* grid_data = malloc(64);
 	comm_grid_read(grid_data);
 
+	while (1) {
+		comm_grid_read(grid_data);
+		sleep(5);
+	}
+
 	//test_led();
 
 	return 0;
