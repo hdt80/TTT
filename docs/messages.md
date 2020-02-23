@@ -56,7 +56,7 @@ Type selection | Description | Read/Write | Addressed? | Notes
 010 | Color values | W | No | Only 8 color values available (0-7)
 011 | RGB LEDs | W | Yes | 4 MSBs are the row, 4 LSBs are the column
 100 | Memory | R | Yes | Memory address to read from
-101 | Unused | | |
+101 | Set LEDs | W | Yes | See commands.md for more details
 110 | Unused | | |
 111 | Unused | | |
 
