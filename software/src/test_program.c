@@ -23,9 +23,24 @@ int main(int argc, char** argv) {
 	u8* grid_data = malloc(64);
 	comm_grid_read(grid_data);
 
+	comm_set_rgb();
+
 	while (1) {
 		comm_grid_read(grid_data);
-		sleep(5);
+
+		comm_led_clear();
+		for (u8 i = 0; i < 64; ++i) {
+			if (grid_data[i] != 0) {
+				infof("Grid (%d, %d) is connected: %d\n",
+					(i % 8),
+					(i / 8),
+					grid_data[i]
+				);
+				comm_led_on(i % 8, i / 8, 1);
+			}
+		}
+
+		//sleep(5);
 	}
 
 	//test_led();
@@ -37,6 +52,7 @@ void test_led(void) {
 	unsigned char col = 0;
 	unsigned char row = 0;
 	unsigned char color = 0;
+	u8* grid_data = malloc(64);
 
 	while (1) {
 		comm_led_on(row, col, color);
@@ -58,6 +74,7 @@ void test_led(void) {
 			++color;
 		}
 
+		//comm_grid_read(grid_data);
 		//sleep(5);
 	}
 

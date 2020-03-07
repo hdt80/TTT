@@ -15,16 +15,19 @@
 #define MSG_TYPE_COLOR 0x02
 #define MSG_TYPE_RGB 0x03
 #define MSG_TYPE_MEMORY 0x04
+#define MSG_TYPE_SET_RGB 0x05
 #define MSG_TYPE_UNKNOWN 0xFF
 
-// Mask to get the mode bit of a header
-#define MSG_MODE_MASK 0x08
-#define MSG_MODE_OFFSET 0x03
-#define MSG_MODE_INDEX 0x00
-#define MSG_MODE_ADDRESS 0x08
-#define MSG_MODE_UNKNOWN 0xFF
+// Mask to get the arg bits of a header
+#define MSG_ARGS_MASK 0x0F
+#define MSG_ARGS_OFFSET 0x00
 
-// Mask to get the address of a header
-#define MSG_ADDRESS_MASK 0x07
-#define MSG_ADDRESS_OFFSET 0x00
-#define MSG_ADDRESS_UNKNOWN 0xFF
+// Set RGB masks//offsets
+#define SET_RGB_KEEP_MASK 0x80
+#define SET_RGB_KEEP_OFFSET 0x07
+#define SET_RGB_ROW_MASK 0x70
+#define SET_RGB_ROW_OFFSET 0x04
+#define SET_RGB_PREVIOUS_MASK 0x08
+#define SET_RGB_PREVIOUS_OFFSET 0x03
+#define SET_RGB_COLUMN_MASK 0x07
+#define SET_RGB_COLUMN_OFFSET 0x00

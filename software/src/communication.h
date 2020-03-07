@@ -87,6 +87,11 @@ void comm_close();
 int comm_handshake();
 
 /*
+ * Test method to test the set RGB command
+ */
+int comm_set_rgb(void);
+
+/*
  * Turn an LED on
  *
  * @col: Column the LED is in
@@ -96,6 +101,13 @@ int comm_handshake();
  * returns: 0 on success, -1 on error (printed to stderr)
  */
 int comm_led_on(u8 col, u8 row, u8 color);
+
+/*
+ * Clear the RGB stuff
+ *
+ * returns: 0 on success, -1 on error
+ */
+int comm_led_clear(void);
 
 /*
  * Perform a grid read

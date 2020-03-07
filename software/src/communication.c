@@ -213,6 +213,54 @@ int comm_handshake(void) {
 	return 0;
 }
 
+int comm_set_rgb(void) {
+	if (comm_fd == -1) {
+		errorf("Cannot handshake, fd is not set\n");
+		return -1;
+	}
+	if (comm_busy() == 1) {
+		errorf("A command is currently being executed, cannot handshake\n");
+		return -1;
+	}
+
+	debugf("comm_set_rgb> Sending handshake to device\n");
+
+	comm_status = STATUS_RUNNING;
+
+	const char msg[] = {
+		0xD8, // Start byte
+
+		0x80,	// First led
+		0x01,	// cv for 1st
+
+		0x99,	// 2nd led, keep cv
+
+		0xA2,	// 3rd led, new cv
+		0x02,	// cv for 3rd
+
+		0x7F	// done, set 4th led, keep cv
+	};
+
+	int res = write(comm_fd, msg, 7);
+	debugf("comm_set_rgb> Wrote %d bytes\n", res);
+
+	while(comm_busy() == 1);
+
+	comm_response data = comm_read();
+
+	if (data.command == 0xD8) {
+		if (data.result == RESPONSE_RESULT_SUCCESS) {
+			infof("comm_handshake> Handshake success, ready for commands\n");
+		} else {
+			errorf("comm_handshake> Handshake failed\n");
+		}
+	} else {
+		warnf("Failed to get command back. Got: 0x%02x\n", data.command);
+	}
+
+	return 0;
+}
+
 int comm_led_on(u8 col, u8 row, u8 color) {
 	if (comm_fd == -1) {
 		errorf("Cannot turn LED on, fd is not set\n");
@@ -228,7 +276,7 @@ int comm_led_on(u8 col, u8 row, u8 color) {
 	comm_status = STATUS_RUNNING;
 
 	const unsigned char msg[] = {
-		0xB9,
+		0xB8,
 		(
 			0x00
 			| ((col & 0x07) << 4)
@@ -246,11 +294,46 @@ int comm_led_on(u8 col, u8 row, u8 color) {
 
 	comm_response data = comm_read();
 
-	if (data.command == 0xB9) {
+	if (data.command == 0xB0) {
 		if (data.result == RESPONSE_RESULT_SUCCESS) {
 			infof("comm_led_on> LED on successful\n");
 		} else {
 			errorf("comm_led_on> LED on failed\n");
+		}
+	} else {
+		warnf("Failed to get command back. Got: 0x%02x\n", data.command);
+	}
+
+	return 0;
+}
+
+int comm_led_clear(void) {
+	if (comm_fd == -1) {
+		errorf("Cannot clear LED on, fd is not set\n");
+		return -1;
+	}
+	if (comm_busy() == 1) {
+		errorf("A command is currently being executed, cannot turn LED on\n");
+		return -1;
+	}
+
+	comm_status = STATUS_RUNNING;
+
+	const unsigned char msg[] = {
+		0xB1
+	};
+
+	int res = write(comm_fd, msg, 1);
+
+	while(comm_busy() == 1);
+
+	comm_response data = comm_read();
+
+	if (data.command == 0xB1) {
+		if (data.result == RESPONSE_RESULT_SUCCESS) {
+			infof("comm_led_clear> LEDs cleared\n");
+		} else {
+			errorf("comm_led_on> LEDs not cleared\n");
 		}
 	} else {
 		warnf("Failed to get command back. Got: 0x%02x\n", data.command);
@@ -286,6 +369,10 @@ int comm_grid_read(u8* result) {
 	if (data.command == 0x10) {
 		if (data.result == RESPONSE_RESULT_SUCCESS) {
 			infof("comm_read_grid> Read %d entries\n", data.length);
+			
+			for (int i = 0; i < 64; ++i) {
+				result[i] = data.data[i];
+			}
 		} else {
 			errorf("comm_read_grid> Failed to read grid\n");
 		}
@@ -413,6 +500,13 @@ void* comm_task(void* filename) {
 					for (u8 i = 0; i < length; ++i) {
 						// Ignore header and command bytes
 						res_data[i] = response[i + 2];
+						/*
+						debugf("\tcopied byte %d: 0x%02x => 0x%02x\n",
+							i,
+							res_data[i],
+							response[i + 2]
+						);
+						*/
 					}
 				}
 

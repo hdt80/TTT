@@ -6,6 +6,7 @@
 #include "uart.h"
 #include "led.h"
 #include "grid.h"
+#include "timer.h"
 
 /*
  * How many bytes from an incoming message have been received
@@ -22,12 +23,28 @@ unsigned char msg_index = 0;
 unsigned char msg_buffer[64] = {};
 
 /*
+ * Is the UART handler currently handling a set RGB command?
+ * 0: Not handling, read normally
+ * 1: Getting data byte
+ * 2: Getting a color value byte
+ */
+unsigned char msg_set_rgb = 0;
+
+unsigned char rgb_previous_color = 0;
+
+struct set_rgb_values_s {
+	unsigned char keep;
+	unsigned char row;
+	unsigned char column;
+	unsigned char color;
+} set_rgb_values;
+
+/*
  * Control bytes of a received message
  */
 unsigned char msg_readwrite = MSG_READWRITE_UNKNOWN;
 unsigned char msg_type = MSG_TYPE_UNKNOWN;
-unsigned char msg_mode = MSG_MODE_UNKNOWN;
-unsigned char msg_address = MSG_ADDRESS_UNKNOWN;
+unsigned char msg_args = 0x00;
 
 int main(void) {
 	// Create FILE stream for logging messages and response messages
@@ -37,6 +54,7 @@ int main(void) {
 	uart_init();
 	led_init();
 	grid_init();
+	timer_init();
 
 	// Redirect stdout and stdin to our UART streams
 	stdout = &uart_out;
@@ -64,16 +82,54 @@ int main(void) {
 	led_set_color(6, 0xF2);
 	led_set_color(7, 0x1F);
 
+	//PORTB |= 0x01;
+	PORTB |= 0x18; // Enable pullups
+
 	while (1) {
+		PORTB = 0x18; // Turn off all other rows
+
+		if (row == 0) {
+			DDRB = 0x01;
+			PORTB |= 0x02;
+			row = 1;
+		} else if (row == 1) {
+			DDRB = 0x02;
+			PORTB |= 0x01;
+			row = 0;
+		} else {
+			row = 0;
+		}
+
+		grid_data[row * 8 + 0] = !(PINB & 0x08);
+		grid_data[row * 8 + 1] = !(PINB & 0x10);
+
+		/*
+		if (!(port & 0x08)) {
+			printf("(%d, 0) connected\r\n", row);
+		}
+		if (!(port & 0x10)) {
+			printf("(%d, 1) connected\r\n", row);
+		}
+		*/
+
+		/*
+		printf("Pin : 0x%02x\r\n", PINB);
+		printf("Port: 0x%02x\r\n", PORTB);
+		printf("DDR : 0x%02x\r\n", DDRB);
+		printf("\r\n");
+		*/
+
 		/*
 		for (u8 a = 0; a < 255; ++a) {
 			for (u8 b = 0; b < 255; ++b) {
-				for (u8 c = 0; c < 5; ++c) {
+				for (u8 c = 0; c < 100; ++c) {
 
 				}
 			}
 		}
+		*/
 
+		/*
 		led_clear();
 		led_on_value(col, row, index);
 		//led_on_rgb(col, row, 0xFF, 0xFF, 0xFF);
@@ -109,70 +165,45 @@ int main(void) {
 	return -1;
 }
 
-ISR(USART_RX_vect) {
-	unsigned char msg_byte = UDR0;
-	//printf("0x%02x\r\n", msg_byte);
-
+ISR(TIMER0_OVF_vect) {
 	if (msg_started == 0) {
-		msg_started = 1;
-		msg_index = 0;
-		msg_length = 1;
-
-		msg_readwrite = (msg_byte & MSG_READWRITE_MASK) >> MSG_READWRITE_OFFSET;
-		msg_type = (msg_byte & MSG_TYPE_MASK) >> MSG_TYPE_OFFSET;
-		msg_mode = (msg_byte & MSG_MODE_MASK) >> MSG_MODE_OFFSET;
-		msg_address = (msg_byte & MSG_ADDRESS_MASK) >> MSG_ADDRESS_OFFSET;
-
-		// Expect a data byte
-		if (msg_readwrite == 0x01) {
-			++msg_length;
-		}
-
-		// Expect a address byte
-		if (msg_mode == 0x01) {
-			++msg_length;
-		}
-
-		/*
-		printf("RW: 0x%02x\r\n", msg_readwrite);
-		printf("T : 0x%02x\r\n", msg_type);
-		printf("M : 0x%02x\r\n", msg_mode);
-		printf("A : 0x%02x\r\n", msg_address);
-		*/
+		return;
 	}
 
-	msg_buffer[msg_index++] = msg_byte;
-	--msg_length;
+	printf("msg done, have %d bytes to process\r\n", msg_index);
 
-	if (msg_length == 0) {
-		msg_started = 0;
+	for (unsigned char i = 0; i < msg_index; ++i) {
+		printf("0x%02x\r\n", msg_buffer[i]);
+	}
 
-		//printf("done\r\n");
+	msg_readwrite = (msg_buffer[0] & MSG_READWRITE_MASK) >> MSG_READWRITE_OFFSET;
+	msg_type = (msg_buffer[0] & MSG_TYPE_MASK) >> MSG_TYPE_OFFSET;
+	msg_args = (msg_buffer[0] & MSG_ARGS_MASK);
 
-		switch (msg_type) {
-			case MSG_TYPE_HANDSHAKE:
-				//printf("Handshaking\r\n");
-				fputc(0x80, stdout);
-				fputc(0x00, stdout);
-				break;
+	printf("RW: 0x%02x\r\n", msg_readwrite);
+	printf("T : 0x%02x\r\n", msg_type);
+	printf("A : 0x%02x\r\n", msg_args);
 
-			case MSG_TYPE_GRID:
-				fputc(0x80 | 0x20 | 6, stdout);
-				fputc(msg_buffer[0], stdout);
-				for (u8 i = 0; i < 64; ++i) {
-					fputc(grid_data[i], stdout);
-				}
-				//printf("Grid contents\r\n");
-				break;
+	switch (msg_type) {
+		case MSG_TYPE_HANDSHAKE:
+			printf("Handshaking\r\n");
+			fputc(0x80, stdout);
+			fputc(0x00, stdout);
+			break;
 
-			case MSG_TYPE_COLOR:
-				//printf("Setting color\r\n");
-				break;
+		case MSG_TYPE_GRID:
+			fputc(0x80 | 0x20 | 6, stdout);
+			fputc(msg_buffer[0], stdout);
+			for (u8 i = 0; i < 64; ++i) {
+				fputc(grid_data[i], stdout);
+			}
+			break;
 
-			case MSG_TYPE_RGB:
-				//printf("Setting RGB LED: %d\r\n", msg_index);
+		case MSG_TYPE_COLOR:
+			break;
 
-				// Must be 3 chars, command, addr and data
+		case MSG_TYPE_RGB:
+			if ((msg_args & 0x07) == 0) {
 				if (msg_index != 3) {
 					fputc(0x80 | 0x40, stdout);
 					fputc(msg_buffer[0], stdout);
@@ -181,35 +212,89 @@ ISR(USART_RX_vect) {
 					u8 row = msg_buffer[1] & 0x07;
 					u8 color = msg_buffer[2];
 
-					/*
-					printf("C: %d\r\n", col);
-					printf("R: %d\r\n", row);
-					printf("I: %d\r\n", color);
-					*/
-
 					led_clear();
 					led_on_value(col, row, color);
-					led_update();
+					if (msg_args & 0x08) {
+						led_update();
+					}
 
 					fputc(0x80, stdout);
 					fputc(msg_buffer[0], stdout);
 				}
+			} else if ((msg_args & 0x07) == 1) {
+				led_clear();
+				if (msg_args & 0x08) {
+					led_update();
+				}
 
-				break;
+				fputc(0x80, stdout);
+				fputc(msg_buffer[0], stdout);
+			}
+			break;
 
-			case MSG_TYPE_MEMORY:
-				printf("Reading memory address\r\n");
-				break;
+		case MSG_TYPE_MEMORY:
+			break;
 
-			default:
-				printf("Unknown message type: 0x%02x\r\n", msg_type);
-				msg_type = MSG_TYPE_UNKNOWN;
+		case MSG_TYPE_SET_RGB:
+			printf("set RGB\r\n");
 
-				// Set error flag
-				fputc(0x80 | 0x40, stdout);
-				fputc(msg_byte, stdout);
+			unsigned char prev_color = 0;
+			unsigned char msg_byte = 0;
 
-				break;
-		}
+			for (unsigned char i = 1; i < msg_index; ++i) {
+				msg_byte = msg_buffer[i];
+
+				set_rgb_values.keep = (msg_byte & SET_RGB_KEEP_MASK);
+				set_rgb_values.row = (msg_byte & SET_RGB_ROW_MASK) >> SET_RGB_ROW_OFFSET;
+				set_rgb_values.color = (msg_byte & SET_RGB_PREVIOUS_MASK);
+				set_rgb_values.column = (msg_byte & SET_RGB_COLUMN_MASK);
+
+				printf("A: 0x%02x\r\n", msg_byte);
+				printf("K: 0x%02x\r\n", set_rgb_values.keep);
+				printf("R: 0x%02x\r\n", set_rgb_values.row);
+				printf("P: 0x%02x\r\n", set_rgb_values.column);
+				printf("C: 0x%02x\r\n", set_rgb_values.color);
+
+				// Is the next byte a color byte?
+				if (set_rgb_values.color == 0) {
+					set_rgb_values.color = msg_buffer[i + 1];
+					++i; // Skip next byte
+					printf("cv in next byte\r\n");
+				} else {
+					set_rgb_values.color = prev_color;
+					printf("cv is previous\r\n");
+				}
+
+				printf("C: 0x%02x\r\n", set_rgb_values.color);
+
+				prev_color = set_rgb_values.color;
+
+				led_on_value(
+					set_rgb_values.column,
+					set_rgb_values.row,
+					set_rgb_values.color
+				);
+			}
+			printf("done processing set rgb\r\n");
+			fputc(0x80, stdout);
+			fputc(msg_buffer[0], stdout);
+			break;
+
+		default:
+			printf("unknown msg type: 0x%02x\r\n", msg_type);
+			msg_type = MSG_TYPE_UNKNOWN;
+
+			fputc(0x80 | 0x40, stdout);
+			fputc(msg_type, stdout);
+			break;
 	}
+
+	msg_started = 0;
+	msg_index = 0;
+}
+
+ISR(USART_RX_vect) {
+	msg_buffer[msg_index++] = UDR0;
+	msg_started = 1;
+	TCNT0 = 0;
 }
