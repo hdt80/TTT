@@ -18,7 +18,7 @@ Documentation on how the device and software talk to each other.
 
 ## Software commands
 
-A command to the hardware that expects a response.
+A command to the hardware that expects a response. Bytes will still be accepted until 10ms have passed with no bytes being sent, at that point, the command will be processed.
 
 ### Format
 
