@@ -22,21 +22,20 @@ A command to the hardware that expects a response.
 
 ### Format
 
-Header | Address | Data
------ | ----- | -----
-Single byte | Optional, up to 8 bytes | Used for writes, 1 byte
+Header | Data
+----- | -----
+Single byte | Optional, used in a per command basis
 
 A single message contains at most three parts.
 
 - Header: Indicates how the meaning of the rest of the bytes.
-- Address: If the header's M bit is not set, there will be 0 address bytes. If set, contains the address to read or write to.
-- Data: A single byte only present when this is a write message.
+- Data: All the bytes coming after the header. How the data is used depends on the command being sent.
 
 ### Header
 
 Bit 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
 ----- | - | - | - | - | - | - | -
-R/W   |	T | T | T | M | A | A | A
+R/W   |	T | T | T | A | A | A | A
 
 #### R/W - Read write bit
 
@@ -49,31 +48,22 @@ Read write bit | Description
 
 What type of data will this command be performed on?
 
-Type selection | Description | Read/Write | Addressed? | Notes
------ | ----- | ----- | ----- | -----
-000 | Handshake | W | No | Sent out to find the device
-001 | Grid contents | R | No | Read all 64 grid squares, left to right, top bottom
-010 | Color values | W | No | Only 8 color values available (0-7)
-011 | RGB LEDs | W | Yes | 4 MSBs are the row, 4 LSBs are the column
-100 | Memory | R | Yes | Memory address to read from
-101 | Set LEDs | W | Yes | See commands.md for more details
+Type selection | Description | Read/Write | Description
+----- | ----- | ----- | -----
+000 | Handshake | W | Sent out to find the device
+001 | Grid contents | R | Read all 64 grid squares, left to right, top bottom
+010 | Color values | W | Only 8 color values available (0-7)
+011 | RGB LEDs | W | 4 MSBs are the row, 4 LSBs are the column
+100 | Memory | R | Memory address to read from
+101 | Set LEDs | W | See commands.md for more details
 110 | Unused | | |
 111 | Unused | | |
 
 Read/Write: What operation can be used on this type?
 
-Addressed? Does this type have the M bit set?
+#### A - Command arguments
 
-#### M - Mode selection
-
-Mode selection | Description
------ | -----
-0 | No address bytes will be send after data
-1 | Use address bits as length, next n bytes will be addresses
-
-#### A - Address length/index
-
-Address bits are used depending on the mode selection bit. When M is 0, A will contain an offset, and no address bytes will be present. When M is 1, A contains the number of address bytes that will follow the header.
+Command arguments are implemented on a per command basis.
 
 ## Hardware responses
 
