@@ -82,42 +82,39 @@ int main(void) {
 	led_set_color(6, 0xF2);
 	led_set_color(7, 0x1F);
 
-	//PORTB |= 0x01;
-	PORTB |= 0x18; // Enable pullups
+	// Left adjust the result
+	ADMUX |= ((1 << REFS0) | (1 << ADLAR));
+
+	// Enable the ADC with a 128 prescale
+	ADCSRA |= ((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADEN));
 
 	while (1) {
-		PORTB = 0x18; // Turn off all other rows
+		if (row == 0) {
+			DDRB = 0x08;
+			PORTB = 0x08;
+		} else if (row == 1) {
+			DDRB = 0x10;
+			PORTB = 0x10;
+		}
+		//printf("\r\nrow %d\r\n", row);
+		for (col = 0; col < 2; ++col) {
+			ADMUX = (ADMUX & 0xF0) | ((col + 6) & 0x0F);
+
+			ADCSRA |= (1 << ADSC); // Start single conversion
+			while (ADCSRA & (1 << ADSC)); // Wait for complete
+
+			grid_data[col * 8 + row] = ADCH;
+			//printf("0x%02x ", ADCH);
+		}
+		//printf("\r\n");
 
 		if (row == 0) {
-			DDRB = 0x01;
-			PORTB |= 0x02;
 			row = 1;
 		} else if (row == 1) {
-			DDRB = 0x02;
-			PORTB |= 0x01;
 			row = 0;
 		} else {
 			row = 0;
 		}
-
-		grid_data[row * 8 + 0] = !(PINB & 0x08);
-		grid_data[row * 8 + 1] = !(PINB & 0x10);
-
-		/*
-		if (!(port & 0x08)) {
-			printf("(%d, 0) connected\r\n", row);
-		}
-		if (!(port & 0x10)) {
-			printf("(%d, 1) connected\r\n", row);
-		}
-		*/
-
-		/*
-		printf("Pin : 0x%02x\r\n", PINB);
-		printf("Port: 0x%02x\r\n", PORTB);
-		printf("DDR : 0x%02x\r\n", DDRB);
-		printf("\r\n");
-		*/
 
 		/*
 		for (u8 a = 0; a < 255; ++a) {

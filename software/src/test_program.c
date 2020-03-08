@@ -20,6 +20,8 @@ int main(int argc, char** argv) {
 
 	comm_handshake();
 
+	//while(1);
+
 	u8* grid_data = malloc(64);
 	comm_grid_read(grid_data);
 
@@ -27,17 +29,25 @@ int main(int argc, char** argv) {
 
 	while (1) {
 		comm_grid_read(grid_data);
+		u8 found = 0;
 
-		comm_led_clear();
+		comm_led_clear(0);
 		for (u8 i = 0; i < 64; ++i) {
 			if (grid_data[i] != 0) {
-				infof("Grid (%d, %d) is connected: %d\n",
+				u8 cv = (grid_data[i] & 0xE0) >> 5;
+				infof("Grid (%d, %d) is connected: 0x%x (0x%x)\n",
 					(i % 8),
 					(i / 8),
-					grid_data[i]
+					grid_data[i],
+					cv
 				);
-				comm_led_on(i % 8, i / 8, 1);
+				comm_led_on(i % 8, i / 8, cv);
+				found = 1;
 			}
+		}
+
+		if (found == 0) {
+			comm_led_clear(1);
 		}
 
 		//sleep(5);

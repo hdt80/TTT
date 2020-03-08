@@ -105,9 +105,11 @@ int comm_led_on(u8 col, u8 row, u8 color);
 /*
  * Clear the RGB stuff
  *
+ * @commit: Will the clear be committed and display out
+ *
  * returns: 0 on success, -1 on error
  */
-int comm_led_clear(void);
+int comm_led_clear(u8 commit);
 
 /*
  * Perform a grid read

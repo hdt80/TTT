@@ -250,7 +250,7 @@ int comm_set_rgb(void) {
 
 	if (data.command == 0xD8) {
 		if (data.result == RESPONSE_RESULT_SUCCESS) {
-			infof("comm_handshake> Handshake success, ready for commands\n");
+			debugf("comm_handshake> Handshake success, ready for commands\n");
 		} else {
 			errorf("comm_handshake> Handshake failed\n");
 		}
@@ -294,9 +294,9 @@ int comm_led_on(u8 col, u8 row, u8 color) {
 
 	comm_response data = comm_read();
 
-	if (data.command == 0xB0) {
+	if (data.command == 0xB8) {
 		if (data.result == RESPONSE_RESULT_SUCCESS) {
-			infof("comm_led_on> LED on successful\n");
+			debugf("comm_led_on> LED on successful\n");
 		} else {
 			errorf("comm_led_on> LED on failed\n");
 		}
@@ -307,7 +307,7 @@ int comm_led_on(u8 col, u8 row, u8 color) {
 	return 0;
 }
 
-int comm_led_clear(void) {
+int comm_led_clear(u8 commit) {
 	if (comm_fd == -1) {
 		errorf("Cannot clear LED on, fd is not set\n");
 		return -1;
@@ -320,7 +320,7 @@ int comm_led_clear(void) {
 	comm_status = STATUS_RUNNING;
 
 	const unsigned char msg[] = {
-		0xB1
+		0xB1 | ((commit & 1) << 3)
 	};
 
 	int res = write(comm_fd, msg, 1);
@@ -329,9 +329,9 @@ int comm_led_clear(void) {
 
 	comm_response data = comm_read();
 
-	if (data.command == 0xB1) {
+	if ((data.command == 0xB1) | ((commit & 1) << 3)) {
 		if (data.result == RESPONSE_RESULT_SUCCESS) {
-			infof("comm_led_clear> LEDs cleared\n");
+			debugf("comm_led_clear> LEDs cleared\n");
 		} else {
 			errorf("comm_led_on> LEDs not cleared\n");
 		}
@@ -368,7 +368,7 @@ int comm_grid_read(u8* result) {
 
 	if (data.command == 0x10) {
 		if (data.result == RESPONSE_RESULT_SUCCESS) {
-			infof("comm_read_grid> Read %d entries\n", data.length);
+			debugf("comm_read_grid> Read %d entries\n", data.length);
 			
 			for (int i = 0; i < 64; ++i) {
 				result[i] = data.data[i];
@@ -381,7 +381,6 @@ int comm_grid_read(u8* result) {
 	}
 
 	return 0;
-
 }
 
 typedef enum SM_COMM_s {
@@ -454,12 +453,16 @@ void* comm_task(void* filename) {
 
 				response[0] = res;
 
+#if DEBUG
 				printf("0x%02x ", res);
+#endif
 
 				comm_status = STATUS_RUNNING;
 				state = CMD;
 			} else {
+#if DEBUG
 				printf("%c", res);
+#endif
 			}
 		} else if (state == CMD) {
 			response[index] = res;
@@ -468,7 +471,9 @@ void* comm_task(void* filename) {
 			if (data_avail == 1) {
 				state = READING;
 			} else {
+#if DEBUG
 				printf("\n");
+#endif
 				debugf("comm_task> no data: skipping READING state\n");
 
 				comm_response res = {
@@ -486,10 +491,14 @@ void* comm_task(void* filename) {
 		} else if (state == READING) {
 			response[index] = res;
 
+#if DEBUG
 			printf("0x%02x ", res);
+#endif
 
 			if (index >= length) {
+#if DEBUG
 				printf("\n");
+#endif
 				debugf("comm_task> Response done\n");
 
 				u8* res_data = NULL;
