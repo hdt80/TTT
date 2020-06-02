@@ -2,13 +2,13 @@ package me.hdt.board;
 
 public class LedSetCommand extends TTTCommand {
 
-    public final char x;
+    public final byte x;
 
-    public final char y;
+    public final byte y;
 
-    public final char colorIndex;
+    public final byte colorIndex;
 
-    public LedSetCommand(char x, char y, char colorIndex) {
+    public LedSetCommand(byte x, byte y, byte colorIndex) {
         super(Type.BOARD_SET);
 
         this.x = x;

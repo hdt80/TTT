@@ -17,11 +17,11 @@ public class Board {
 
         int comm_init(String path);
 
-        int comm_grid_read(char[] buffer);
+        int comm_grid_read(byte[] buffer);
 
-        int comm_led_clear(char commit);
+        int comm_led_clear(byte commit);
 
-        int comm_led_on(char col, char row, char color);
+        int comm_led_on(byte col, byte row, byte color);
 
     }
 
@@ -42,7 +42,7 @@ public class Board {
             return;
         }
 
-        queue.add(new LedSetCommand((char) col, (char) row, (char) color));
+        queue.add(new LedSetCommand((byte) col, (byte) row, (byte) color));
     }
 
 }

@@ -1,4 +1,12 @@
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/board/ReadGridCommand.java
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/ConfigEntry.java
 /home/hdt/code/ttt/gui/src/main/java/me/hdt/Main.java
 /home/hdt/code/ttt/gui/src/main/java/me/hdt/UpdateThread.java
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/gui/ButtonContextMenu.java
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/board/TTTCommand.java
 /home/hdt/code/ttt/gui/src/main/java/me/hdt/Board.java
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/board/InitializeCommand.java
 /home/hdt/code/ttt/gui/src/main/java/me/hdt/GuiThread.java
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/board/LedSetCommand.java
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/util/BoardUtil.java
+/home/hdt/code/ttt/gui/src/main/java/me/hdt/board/BoardClearCommand.java

@@ -1,8 +1,14 @@
 package me.hdt;
 
+import me.hdt.util.BoardUtil;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class GuiThread extends Thread {
     private JFrame frame;
@@ -11,14 +17,17 @@ public class GuiThread extends Thread {
 
     private final JPopupMenu contextMenu;
     private final JButton[] buttons = new JButton[64];
-    private Point selectedGridCoord = null;
+    private Vec2i selectedGridCoord = null;
+
+    private final List<Vec2i> selectedSquares = new LinkedList<>();
+
+    private final Border highlightedBorder = BorderFactory.createLineBorder(Color.MAGENTA, 3);
+    private final Border defaultBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
 
     public GuiThread(UpdateThread thread) {
         this.updateThread = thread;
 
         contextMenu = new JPopupMenu();
-
-        JMenuItem redColor = new JMenuItem();
 
         String[] colors = {"Red", "Green", "Blue"};
         for (int i = 0; i < colors.length; ++i) {
@@ -65,7 +74,7 @@ public class GuiThread extends Thread {
                 }
             }
 
-            char[] board = updateThread.getBoard();
+            byte[] board = updateThread.getBoard();
 
             for (int i = 0; i < 8; ++i) {
                 for (int j = 0; j < 8; ++j) {
@@ -75,16 +84,71 @@ public class GuiThread extends Thread {
                         continue;
                     }
 
-                    char value = board[i * 8 + j];
+                    byte value = board[i * 8 + j];
+                    int v = Byte.toUnsignedInt(value);
+                    int index = (v & 0xE0) >> 5;
 
-                    button.setText(String.format("0x%02x", (int) value));
-                    if (value > 0) {
+                    button.setText(String.format("%d", index));
+
+                    if (value != 0) {
                         button.setBackground(Color.GREEN);
+                        //System.out.println(String.format("(%d, %d) has %d/%d/%d", i, j, value, v, index));
                     } else {
                         button.setBackground(Color.GRAY);
                     }
+
+                    if (selectedGridCoord != null && selectedGridCoord.getX() == i && selectedGridCoord.getY() == j) {
+                        button.setBorder(highlightedBorder);
+                    } else {
+                        button.setBorder(defaultBorder);
+                    }
                 }
             }
+
+            if (selectedGridCoord != null && selectedSquares.size() > 0) {
+                Graphics2D gr = (Graphics2D) frame.getGraphics();
+                if (gr == null) {
+                    System.out.println("Missing Graphics2D to draw lines");
+                    continue;
+                }
+
+                JButton selectedButton = getGridButton(selectedGridCoord.getX(), selectedGridCoord.getY());
+                if (selectedButton == null) {
+                    System.out.println(String.format("Missing JButton for selectedGridCoord"));
+                    continue;
+                }
+
+                Stroke prevStroke = gr.getStroke();
+                gr.setStroke(new BasicStroke(2));
+
+                Vec2i selectedCenter = getButtonCenter(selectedButton);
+
+                // Avoid concurrent modification with accessing and adding in another thread
+                ArrayList<Vec2i> squares = new ArrayList<>(selectedSquares);
+                for (Vec2i square : squares) {
+                    int gx = square.getX();
+                    int gy = square.getY();
+
+                    JButton squareButton = getGridButton(gx, gy);
+                    if (squareButton == null) {
+                        System.err.println(String.format("Missing squareButton %d %d", gx, gy));
+                        continue;
+                    }
+
+                    Vec2i center = getButtonCenter(squareButton);
+                    gr.drawLine(selectedCenter.getX(), selectedCenter.getY(), center.getX(), center.getY());
+
+                    int cx = (selectedCenter.getX() + center.getX()) / 2;
+                    int cy = (selectedCenter.getY() + center.getY()) / 2;
+
+                    double dist = BoardUtil.distance(selectedGridCoord, square);
+
+                    gr.drawString(String.format("%.2f", dist), cx, cy);
+                }
+
+                gr.setStroke(prevStroke);
+            }
+
         }
     }
 
@@ -101,7 +165,19 @@ public class GuiThread extends Thread {
         return null;
     }
 
-    private Point parseGridName(String name) {
+    private Vec2i getButtonCenter(JButton button) {
+        int width = button.getWidth();
+        int height = button.getHeight();
+        int bx = button.getX();
+        int by = button.getY();
+
+        int lineToX = bx + (width / 2);
+        int lineToY = by + (height / 2);
+
+        return new Vec2i(lineToX, lineToY);
+    }
+
+    private Vec2i parseGridName(String name) {
         if (!name.startsWith("grid")) {
             return null;
         }
@@ -114,10 +190,12 @@ public class GuiThread extends Thread {
         String xPart = parts[1];
         String yPart = parts[2];
 
+        System.out.println(String.format("name %s xPart %s yPart %s", name, xPart, yPart));
+
         int x = Integer.parseInt(xPart);
         int y = Integer.parseInt(yPart);
 
-        return new Point(x, y);
+        return new Vec2i(x, y);
     }
 
     private static class CloseListener implements KeyListener {
@@ -128,13 +206,49 @@ public class GuiThread extends Thread {
         }
 
         public void keyPressed(KeyEvent keyEvent) {
-            if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            Point mousePoint = MouseInfo.getPointerInfo().getLocation();
+            Component comp = thread.frame.getContentPane().getComponentAt(mousePoint);
+
+            JButton gridButton = null;
+            if (comp instanceof JButton) {
+                gridButton = (JButton) comp;
+            }
+
+            int keyCode = keyEvent.getKeyCode();
+
+            if (keyCode == KeyEvent.VK_ESCAPE) {
+                Board.ledClear(true);
                 if (keyEvent.isShiftDown()) {
                     thread.frame.dispose();
                     Main.running = false;
-                } else {
-                    Board.ledClear(true);
                 }
+            } else if (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9 && gridButton != null) {
+                String buttonName = gridButton.getName();
+                Vec2i gridPoint = thread.parseGridName(buttonName);
+                if (gridPoint == null) {
+                    System.out.println(String.format("%s is not a grid button", buttonName));
+                    return;
+                }
+
+                // Because VK_0 - VK_9 is sequential, subtracting will get us the number typed
+                int colorIndex = keyCode - KeyEvent.VK_0;
+
+                Board.ledOn(gridPoint.x, gridPoint.y, colorIndex);
+            } else if (keyCode == KeyEvent.VK_A && gridButton != null) {
+                Vec2i gridPoint = thread.parseGridName(gridButton.getName());
+                if (gridPoint == null) {
+                    System.out.println(String.format("Missing gridPoint for %s", gridButton.getName()));
+                } else {
+                    if (thread.selectedGridCoord != null) {
+                        thread.selectedSquares.add(gridPoint);
+                        System.out.println(String.format("Adding %d, %d", gridPoint.x, gridPoint.y));
+                    } else {
+                        System.out.println("Skipping adding button as selectedGridCoord is null");
+                    }
+                }
+            } else if (keyCode == KeyEvent.VK_C) {
+                thread.selectedSquares.clear();
+                thread.frame.repaint();
             }
         }
 
@@ -165,22 +279,6 @@ public class GuiThread extends Thread {
         }
     }
 
-    private class ContextMenuClickListener implements MouseListener {
-        private final int colorIndex;
-
-        public ContextMenuClickListener(int colorIndex) {
-            this.colorIndex = colorIndex;
-        }
-
-        public void mouseClicked(MouseEvent mouseEvent) {
-        }
-
-        public void mousePressed(MouseEvent mouseEvent) { }
-        public void mouseReleased(MouseEvent mouseEvent) { }
-        public void mouseEntered(MouseEvent mouseEvent) { }
-        public void mouseExited(MouseEvent mouseEvent) { }
-    }
-
     private class ButtonClickListener implements MouseListener {
         private final int index;
 
@@ -194,22 +292,21 @@ public class GuiThread extends Thread {
             int mx = mouseEvent.getX();
             int my = mouseEvent.getY();
 
-            Component comp = frame.getContentPane().getComponentAt(mx, my);
+            Component comp = (Component) mouseEvent.getSource(); // frame.getContentPane().getComponentAt(mx, my);
             if (comp == null) {
-                System.out.println(String.format("No component found at (%d, %d)", mx, my));
+                System.out.println("GuiThread> No source in MouseEvent");
                 return;
             }
             if (!(comp instanceof JButton)) {
-                System.out.println(String.format("No JButton at (%d, %d)", mx, my));
+                System.out.println("GuiThread> Source is not a JButton");
                 return;
             }
 
-            String buttonName = ((JButton) comp).getName();
-            Point gridCoords = parseGridName(buttonName);
+            String buttonName = comp.getName();
+            Vec2i gridCoords = parseGridName(buttonName);
             if (gridCoords == null) {
                 System.out.println(
-                    String.format("JButton at (%d, %d) is not a grid button %s",
-                        mx, my, buttonName)
+                    String.format("Failed to parse name of JButton %s", buttonName)
                 );
                 return;
             }
@@ -217,9 +314,41 @@ public class GuiThread extends Thread {
             selectedGridCoord = gridCoords;
 
             if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
-                System.out.println("A");
+                Board.ledClear(true);
+
+                String text = ((JButton) comp).getText();
+                int index = Integer.parseInt(text);
+
+                int distance = -1;
+
+                for (int i = 0; i < Main.config.size(); ++i){
+                    ConfigEntry entry = Main.config.get(i);
+                    if (entry.value == index) {
+                        distance = entry.distance;
+                        break;
+                    }
+                }
+
+                if (distance > -1) {
+                    for (int i = 0; i < 8; ++i) {
+                        for (int j = 0; j < 8; ++j) {
+                            Vec2i gridPoint = new Vec2i(i, j);
+
+                            double dist = BoardUtil.distance(gridPoint, gridCoords);
+                            if (dist <= distance) {
+                                Board.ledOn(i, j, 1);
+                                System.out.printf("Setting (%d, %d) on as dist = %.2f %n", i, j, dist);
+                            }
+                        }
+                    }
+                } else {
+                    System.out.printf("Failed to find distance for %d %n", index);
+                }
+
+                // Queued after all others have completed
+                Board.ledClear(true);
             } else if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
-                contextMenu.show(frame, mx, my);
+                contextMenu.show(frame, comp.getX() + mx, comp.getY() + my);
                 System.out.println(String.format("Showing context menu at (%d, %d)", mx, my));
             }
         }
